@@ -9,6 +9,7 @@ import org.tensorflow.Tensor;
 import org.tensorflow.TensorFlow;
 import javax.security.auth.login.LoginException;
 import java.util.*;
+import java.io.*;
 
 public class Main extends ListenerAdapter {
 
@@ -24,20 +25,31 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         System.out.println("We received a message from " +
-                event.getAuthor().getName()+ ": " +
+                event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
         if (event.getMessage().getContentRaw().equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
-        if (attatchments.size()>0) {
-            List images = new LinkedList();
+        if (attatchments.size() > 0) {
+            List<Message.Attachment> images = new LinkedList();
             for (Message.Attachment mess : attatchments) {
                 if (mess.isImage()) {
                     images.add(mess);
                 }
             }
-            event.getChannel().sendMessage(""+images.size()).queue();
+            for (Message.Attachment message : images) {
+                String randomName = "" + (Math.random());
+                randomName = randomName.substring(2,5);
+                String fileName = message.getFileName();
+                int period = fileName.indexOf(".");
+                String fileType = fileName.substring(period);
+                int hash = message.hashCode();
+                File tempFile = new File("./images/"+hash+fileType);
+                message.download(tempFile);
+                event.getChannel().sendMessage("Imaged downloaded as " + hash +fileType).queue();
+            }
+            event.getChannel().sendMessage("" + images.size()+" images downloaded").queue();
         }
     }
 
