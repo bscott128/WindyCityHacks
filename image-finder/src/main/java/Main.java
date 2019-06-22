@@ -43,6 +43,7 @@ public class Main extends ListenerAdapter {
                 String fileType = fileName.substring(period);
                 File tempFile = new File("./images/"+message.hashCode()+fileType);
                 message.download(tempFile);
+                event.getChannel().sendMessage("Imaged downloaded as " + fileName ).queue();
             }
             event.getChannel().sendMessage("" + images.size()).queue();
         }
