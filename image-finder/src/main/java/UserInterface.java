@@ -8,11 +8,17 @@
 // import java.util.*;
 
 public class UserInterface{
-    set<String> commands = new set<String>();
+    Set<String> commands = new HashSet<String>();
+    MessageReceivedEvent event;
+    String command;
     boolean commanding = false;
+    User user;
 
-    public void main(String command){
-        processCommand(command)
+    public static void main(MessageReceivedEvent event){
+        this.event = event;
+        command = event.getMessage().getContentRaw();
+        user = event.getAuthor();
+        processCommand(command);
     }
 
     private void processCommand(String command){
@@ -20,7 +26,7 @@ public class UserInterface{
             command = command.substring(1, command.length());
             commanding = true;
             if(!commands.contains(command)||command.equals("help")){//tried a command that doesn't exist
-                help(Event e);
+                help();
             }
             else if(command.equals("fun")){
                 fun();
@@ -34,13 +40,16 @@ public class UserInterface{
         commands.add("fun");
     }
 
-    private void help(MessageReceivedEvent event){
+    private void help(){
         if(commanding){
-
+            event.getChannel().sendMessage("Commands:").queue();
+            event.getChannel().sendMessage("%help -- retrieves commands");
+            event.getChannel().sendMessage("%fun -- testing command");
+            
         }
     }
 
-    private void fun(MessageReceivedEvent event){
+    private void fun(){//testing
 
     }
 
