@@ -41,11 +41,12 @@ public class Main extends ListenerAdapter {
                 String fileName = message.getFileName();
                 int period = fileName.indexOf(".");
                 String fileType = fileName.substring(period);
-                File tempFile = new File("./images/"+message.hashCode()+fileType);
+                int hash = message.hashCode();
+                File tempFile = new File("./images/"+hash+fileType);
                 message.download(tempFile);
-                event.getChannel().sendMessage("Imaged downloaded as " + fileName ).queue();
+                event.getChannel().sendMessage("Imaged downloaded as " + hash +fileType).queue();
             }
-            event.getChannel().sendMessage("" + images.size()).queue();
+            event.getChannel().sendMessage("" + images.size()+" images downloaded").queue();
         }
     }
 
