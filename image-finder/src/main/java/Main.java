@@ -1,9 +1,11 @@
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
+import java.util.*;
 
 public class Main extends ListenerAdapter {
 
@@ -21,8 +23,18 @@ public class Main extends ListenerAdapter {
         System.out.println("We received a message from " +
                 event.getAuthor().getName()+ ": " +
                 event.getMessage().getContentDisplay());
-        if (event.getMessage().getContentRaw().equals("test")) {
-            event.getChannel().sendMessage("test").queue();
+        if (event.getMessage().getContentRaw().equals("high")) {
+            event.getChannel().sendMessage("IQ").queue();
+        }
+        List<Message.Attachment> attatchments = event.getMessage().getAttachments();
+        if (attatchments.size()>0) {
+            List images = new LinkedList();
+            for (Message.Attachment mess : attatchments) {
+                if (mess.isImage()) {
+                    images.add(mess);
+                }
+            }
+            event.getChannel().sendMessage(""+images.size()).queue();
         }
     }
 
