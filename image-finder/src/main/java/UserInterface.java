@@ -15,11 +15,8 @@ public class UserInterface{
     boolean commanding = false;
     User user;
 
-    public UserInterface(){
+    public void main(MessageReceivedEvent event){
         declareCommands();
-    }
-
-    public void doStuff(MessageReceivedEvent event){
         this.event = event;
         command = event.getMessage().getContentRaw();
         user = event.getAuthor();
@@ -33,8 +30,8 @@ public class UserInterface{
             if(!commands.contains(command)||command.equals("help")){//tried a command that doesn't exist
                 help();
             }
-            else if(command.equals("fun")){
-                fun();
+            else if(command.equals("")){
+
             }
             commanding = false;
         }
@@ -42,21 +39,19 @@ public class UserInterface{
 
     private void declareCommands(){
         commands.add("help");
-        commands.add("fun");
+
     }
 
     private void help(){
         if(commanding){
             event.getChannel().sendMessage("Commands:").queue();
             event.getChannel().sendMessage("%help -- retrieves commands");
-            event.getChannel().sendMessage("%fun -- testing command");
+            event.getChannel().sendMessage("% + 'tag' -- displays all images with tagged object");
+            event.getChannel().sendMessage(("% + \" + tag + \" -- displays all messages with tagged word"));
             
         }
     }
 
-    private void fun(){//testing
-
-    }
 
 }
 
