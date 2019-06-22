@@ -1,11 +1,12 @@
-// import net.dv8tion.jda.core.AccountType;
-// import net.dv8tion.jda.core.JDABuilder;
-// import net.dv8tion.jda.core.entities.Message;
-// import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-// import net.dv8tion.jda.core.hooks.ListenerAdapter;
+//import net.dv8tion.jda.core.AccountType;
+//import net.dv8tion.jda.core.JDABuilder;
+//import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+//import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-// import javax.security.auth.login.LoginException;
-// import java.util.*;
+//import javax.security.auth.login.LoginException;
+import java.util.*;
 
 public class UserInterface{
     Set<String> commands = new HashSet<String>();
@@ -14,7 +15,11 @@ public class UserInterface{
     boolean commanding = false;
     User user;
 
-    public static void main(MessageReceivedEvent event){
+    public UserInterface(){
+        declareCommands();
+    }
+
+    public void doStuff(MessageReceivedEvent event){
         this.event = event;
         command = event.getMessage().getContentRaw();
         user = event.getAuthor();
@@ -23,7 +28,7 @@ public class UserInterface{
 
     private void processCommand(String command){
         if(command!=null&&command.substring(0, 1).equals("%")){//moves to using the commands
-            command = command.substring(1, command.length());
+            command = command.substring(1);
             commanding = true;
             if(!commands.contains(command)||command.equals("help")){//tried a command that doesn't exist
                 help();
