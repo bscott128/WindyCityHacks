@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
 import java.util.*;
+import java.io.*;
 
 public class Main extends ListenerAdapter {
 
@@ -34,6 +35,9 @@ public class Main extends ListenerAdapter {
                     images.add(mess);
                 }
             }
+            String randomName = ""+(Math.random());
+            randomName = randomName.substring(2);
+            File folder = new File(".");
             event.getChannel().sendMessage(""+images.size()).queue();
         }
     }
