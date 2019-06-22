@@ -30,8 +30,8 @@ public class UserInterface{
             if(!commands.contains(command)||command.equals("help")){//tried a command that doesn't exist
                 help();
             }
-            else if(command.equals("")){
-
+            else{
+                image();
             }
             commanding = false;
         }
@@ -44,14 +44,13 @@ public class UserInterface{
 
     private void help(){
         if(commanding){
-            event.getChannel().sendMessage("Commands:").queue();
-            event.getChannel().sendMessage("%help -- retrieves commands");
-            event.getChannel().sendMessage("% + 'tag' -- displays all images with tagged object");
-            event.getChannel().sendMessage(("% + \" + tag + \" -- displays all messages with tagged word"));
-            
+            event.getChannel().sendMessage("% + tag -- displays all images with tagged object");
         }
     }
 
+    private void image() {
+        
+    }
 
 }
 
