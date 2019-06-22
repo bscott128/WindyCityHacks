@@ -3,10 +3,14 @@ import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+
 import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
 import org.tensorflow.TensorFlow;
+
+
+
 import javax.security.auth.login.LoginException;
 import java.util.*;
 import java.io.*;
@@ -39,8 +43,6 @@ public class Main extends ListenerAdapter {
                 }
             }
             for (Message.Attachment message : images) {
-                String randomName = "" + (Math.random());
-                randomName = randomName.substring(2,5);
                 String fileName = message.getFileName();
                 int period = fileName.indexOf(".");
                 String fileType = fileName.substring(period);
