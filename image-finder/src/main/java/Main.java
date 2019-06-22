@@ -47,7 +47,7 @@ public class Main extends ListenerAdapter {
                 int hash = message.hashCode();
                 File tempFile = new File("./images/"+hash+fileType);
                 message.download(tempFile);
-                event.getChannel().sendMessage("Imaged downloaded as " + hash +fileType).queue();
+                event.getChannel().sendMessage("Image downloaded as " + hash +fileType).queue();
             }
             event.getChannel().sendMessage("" + images.size()+" images downloaded").queue();
         }
