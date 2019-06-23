@@ -5,6 +5,7 @@ public class Trivia{
     LinkedList<TriviaNode> l;
     public Trivia(MessageReceivedEvent event){
         l = triviaSetup();
+        System.out.println(l.size());
         playGame(event);
     }
 
@@ -92,6 +93,7 @@ public class Trivia{
             l.add(new TriviaNode(q, a, w1, w2, w3));
             //System.out.println(q + a + w1 + w2 + w3);
         }
+        System.out.println(l.size());
         return l;
     }
 }
