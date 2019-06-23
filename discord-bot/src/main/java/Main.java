@@ -22,15 +22,24 @@ public class Main extends ListenerAdapter {
 
     }
 
+    public boolean isCommand(String str) {
+        if (str.substring(0,1).equals("%")&&UserInterface.commands.contains(str.substring(1))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        String message = event.getMessage().getContentRaw();
-        if (!message.equals("")&&(!event.getAuthor().isBot()))
-            u.main(event);
+        String message = event.getMessage().getContentRaw().toLowerCase();
+        if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
+            u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
-        if (event.getMessage().getContentRaw().equals("high")) {
+        if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();

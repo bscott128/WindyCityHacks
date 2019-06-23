@@ -11,11 +11,11 @@ import java.util.*;
 import java.util.*;
 
 public class UserInterface{
-    Set<String> commands = new HashSet<String>();
-
+    public static Set<String> commands = new HashSet<String>();
+    public static String[] validCommands = {"dank"};
     public void processCommand(MessageReceivedEvent event)
     {
-
+        commands.addAll(validCommands);
     }
 
 
