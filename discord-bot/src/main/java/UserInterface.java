@@ -20,6 +20,7 @@ public class UserInterface{
         this.event = event;
         command = event.getMessage().getContentRaw();
         user = event.getAuthor();
+
         processCommand(command);
     }
 
