@@ -18,7 +18,7 @@ public class UserInterface {
 
     public static Command[] validCommands =
             {
-
+                    new Command("help", "Used to gain information about commands.")
             };
 
     public UserInterface()
@@ -30,10 +30,10 @@ public class UserInterface {
     public void processCommand(MessageReceivedEvent event)
     {
         String message = event.getMessage().getContentRaw();
-        String command
-        if(!commands.containsKey(event))
+        String command = message.split(" ")[0];
+        if(!commands.containsKey(command))
         {
-            System
+            message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
         }
     }
 
