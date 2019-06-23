@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dada8671-86ee-49c7-ac0d-82cc23e5285a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordTagger/DiscordTagger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DiscordTagger/DiscordTagger.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image-finder/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/image-finder/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image-finder/src/main/java/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/image-finder/src/main/java/UserInterface.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/image-finder/src/main/java/UserInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="673">
+              <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
               <folding>
                 <element signature="e#0#1620#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -56,14 +53,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/image-finder/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/image-finder/src/main/java/UserInterface.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="69" />
-    <option name="y" value="35" />
-    <option name="width" value="1390" />
-    <option name="height" value="921" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="960" />
+    <option name="width" value="960" />
+    <option name="height" value="1160" />
   </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
@@ -133,6 +130,23 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="C:/Users/Scott/Documents/GitHub/WindyCityHacks" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -164,7 +178,7 @@
     </task>
     <servers />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -174,25 +188,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="35" width="1390" height="921" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27293232" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" sideWeight="0.49924812" weight="0.32953104" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6593817" weight="0.32950193" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925372" weight="0.3288364" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49849623" visible="true" weight="0.3282636" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50150377" side_tool="true" visible="true" weight="0.3282636" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49849623" weight="0.32715008" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49699247" weight="0.3282636" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49774435" weight="0.3282636" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.34061834" side_tool="true" weight="0.3237548" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49699247" weight="0.3269962" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -223,8 +238,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/image-finder/src/main/java/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="673">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
           <folding>
             <element signature="e#0#1620#0" expanded="true" />
             <element signature="imports" expanded="true" />
