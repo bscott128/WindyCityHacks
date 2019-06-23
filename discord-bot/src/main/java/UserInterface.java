@@ -98,7 +98,8 @@ public class UserInterface {
                 }
             } else if (command.equals("%randomfact")) {
                 try {
-                    BufferedReader b = new BufferedReader(new FileReader("facts.txt"));
+                    File f = new File("facts.txt");
+                    BufferedReader b = new BufferedReader(new FileReader(f));
                     String s = "";
                     for(int i = (int)(Math.random()*100); i < 100; i++)
                         s = b.readLine();

@@ -9,11 +9,22 @@ public class Trivia {
     int state = 0;
     boolean playing = false;
     public int n;
+    public String[] choices;
 
     public Trivia(MessageReceivedEvent event) {
         l = triviaSetup();
         playing = true;
         playGame(event);
+    }
+
+    public int getIndexRightAnswer() {
+        String right = l.get(n).a;
+        for (int i = 0; i<choices.length;i++) {
+            if (choices[i].equals(right)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void playGame(MessageReceivedEvent event) {
@@ -26,7 +37,7 @@ public class Trivia {
             s.add(n);
             {
                 TriviaNode node = l.get(n);
-                String[] choices = node.choices();
+                choices = node.choices();
                 String mes = l.get(n).q + "\n A: " + choices[0] + "\n B: " + choices[1] + "\n C: " + choices[2] + "\n" +
                         "D: " + choices[3] + "\n quit";
                 sendMessage(event, mes);
@@ -43,15 +54,16 @@ public class Trivia {
                 state++;
             }
         } else if (state == 2 && playing) {
-            String str = event.getMessage().getContentRaw().toLowerCase();
-
-            if (str.equals("quit")) {
+            String str = event.getMessage().getContentRaw().toLowerCase().substring(1);
+            int letterChoice = strToInt(str);
+            if (str.equals("end")) {
                 sendMessage(event, "Thanks for playing");
                 playing = false;
-            } else if (str.equals(l.get(n).a)) {
+            } else if (letterChoice==getIndexRightAnswer()) {
                 sendMessage(event, "Correct");
-            } else
+            } else {
                 sendMessage(event, "Wrong");
+            }
             if (s.size() == 50) {
                 sendMessage(event, "The game is finished");
                 playing = false;
@@ -59,6 +71,23 @@ public class Trivia {
             // }
             state = 0;
         }
+    }
+
+    public int strToInt(String s) {
+        char c = s.charAt(0);
+        if (c=='a') {
+            return 0;
+        }
+        if (c=='b') {
+            return 1;
+        }
+        if (c=='b') {
+            return 2;
+        }
+        if (c=='b') {
+            return 3;
+        }
+        return -1;
     }
 
 
