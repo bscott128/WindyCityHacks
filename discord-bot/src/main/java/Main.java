@@ -11,6 +11,7 @@ import java.io.*;
 
 public class Main extends ListenerAdapter {
     public static UserInterface u;
+    public static String currentCommand;
 
     public static void main(String[] args) throws LoginException {
         u = new UserInterface();
@@ -33,6 +34,7 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
+        currentCommand = message;
         if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
             u.processCommand(event);
         System.out.println("We received a message from " +

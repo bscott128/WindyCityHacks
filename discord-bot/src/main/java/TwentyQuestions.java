@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 public class TwentyQuestions
 {
     private TreeNode root;
+    private int state; // 0-yes/no answer, 1-new question
     private boolean isRoot = true;
     private Scanner scan;
     private PrintWriter saveWriter;
@@ -23,6 +24,7 @@ public class TwentyQuestions
     public static final int ROOT_INDEX = 0;
     public static final int PANEL_LENGTH = 20;
     public static final int DIFFER_QUEST_ARRAY_SIZE = 2;
+    private boolean isStartedUp = true;
     /**
      * main method, makes new 20questions game, plays, adds new question
      * if player won, restarts or quits based upon player input
@@ -34,9 +36,9 @@ public class TwentyQuestions
             boolean playerAns = central.getDialog((String)current.getValue());
             TreeNode savedLast = current; // saves last root for addition of new child nodes
             if (playerAns) // yes is chosen
-                current = current.getLeft();   
+                current = current.getLeft();
             else
-                current = current.getRight();   
+                current = current.getRight();
             if (playerAns && current == null) {
                 central.isOver = true;
             }
@@ -64,7 +66,6 @@ public class TwentyQuestions
      * constructor for game, sets up the UI, scans file into binary tree
      */
     public TwentyQuestions() {
-        setUI();
         sheet = new File("questions.txt");
         try {
             scan = new Scanner(sheet);
@@ -73,36 +74,6 @@ public class TwentyQuestions
         } catch (Throwable t) {
             printThrow(t);
         }
-    }
-
-    /**
-     * gets a list of strings corresponding to all txt files in folder
-     */
-    public String[] readFileOpenOptions() {
-        File folder = new File(".");
-        File[] listFiles = folder.listFiles();
-        ArrayList<String> ppms = new ArrayList<String>();
-        for (File x: listFiles) {
-            String name = x.getName();
-            int size = name.length();
-            String fileForm = name.substring(size-4); // 4 = ".txt".length()
-            if (fileForm.equals(".txt"))
-                ppms.add(name);
-        }
-        return ppms.toArray(new String[0]);
-    }
-
-    /**
-     * displays a set of string options in GUI to be selected by user
-     */
-    public String displayOptions(String[] options, String message) {
-        String input = (String) JOptionPane.showInputDialog(null, message,
-                "20Q", JOptionPane.QUESTION_MESSAGE, null, // Use
-                // default
-                // icon
-                options, // Array of choices
-                options[0]); // Initial choice
-        return input;
     }
 
     /**
@@ -119,7 +90,7 @@ public class TwentyQuestions
         pan.add(new JLabel("Is it ______? (only the answer)"));
         pan.add(diffAnswer);
         String[] qVals = null;
-        int result = JOptionPane.showConfirmDialog(null, pan, 
+        int result = JOptionPane.showConfirmDialog(null, pan,
                 "Please Enter Your Question Statements", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             qVals = new String[DIFFER_QUEST_ARRAY_SIZE];
@@ -156,7 +127,7 @@ public class TwentyQuestions
     public boolean isQuestion(String s) {
         int index = s.indexOf(QUESTION_NOTATION);
         if (index == 0) {
-            return true;   
+            return true;
         }
         return false;
     }
@@ -198,20 +169,12 @@ public class TwentyQuestions
     }
 
     /**
-     * @param input for the question
+     * @param q for the question
      * returns a boolean from a joptionpane asking a yes/no/cancel button
      */
     public boolean getDialog(String q) {
-        int ans = JOptionPane.showConfirmDialog(null, q, TITLE, JOptionPane.YES_NO_OPTION);
-        if (ans == JOptionPane.YES_OPTION) {
-            return true;
-        } else if (ans == JOptionPane.NO_OPTION) {
-            return false;
-        }
-        else { // exits program, without saving
-            end();
-            return false;
-        }
+        String current = null;
+
     }
 
     /**
@@ -221,20 +184,6 @@ public class TwentyQuestions
         System.exit(0);
     }
 
-    /**
-     * sets the UI based upon the look and feel of the operation system
-     * program is running in
-     */
-    public void setUI() {
-        try {
-            // Set System L&F
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } 
-
-        catch (Exception e) {
-            // handle exception
-        }
-    }
     //tostring methods below
     //used just for troubleshooting
     /**
@@ -250,10 +199,10 @@ public class TwentyQuestions
             TreeNode o = (TreeNode)aq.remove();
             if (o!=null) {
                 if (o.getLeft()!=null) {
-                    aq.add(o.getLeft());   
+                    aq.add(o.getLeft());
                 }
                 if (o.getRight()!=null) {
-                    aq.add(o.getRight());   
+                    aq.add(o.getRight());
                 }
                 str+=o.getValue().toString() + ", ";
             }
