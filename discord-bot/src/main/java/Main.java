@@ -37,7 +37,7 @@ public class Main extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
         currentCommand = message;
-        if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
+        if (!message.equals("") && (!event.getAuthor().isBot()) && isCommand(message))
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
@@ -49,9 +49,19 @@ public class Main extends ListenerAdapter {
             tqGame = new TQGame();
             game = 1;
         }
-        if (game==1&&(!event.getAuthor().isBot())) {
+        if (game == 1 && (!event.getAuthor().isBot())) {
             tqGame.next(event);
-            if (tqGame.state==666) {
+            if (tqGame.state == 666) {
+                game = 0;
+            }
+        }
+        if (message.equals("%ttt")) {
+            tqGame = new TQGame();
+            game = 2;
+        }
+        if (game == 2 && (!event.getAuthor().isBot())) {
+            tqGame.next(event);
+            if (tqGame.state == 666) {
                 game = 0;
             }
         }
@@ -75,7 +85,6 @@ public class Main extends ListenerAdapter {
             event.getChannel().sendMessage("" + images.size() + " images downloaded").queue();
         }
     }
-
 
 
 }

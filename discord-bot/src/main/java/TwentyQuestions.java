@@ -30,14 +30,6 @@ public class TwentyQuestions {
     public static final int DIFFER_QUEST_ARRAY_SIZE = 2;
     private boolean isStartedUp = true;
 
-    /**
-     * main method, makes new 20questions game, plays, adds new question
-     * if player won, restarts or quits based upon player input
-     */
-    public static void main() {
-
-    }
-
     public boolean step(MessageReceivedEvent event) {
         String str = event.getMessage().getContentRaw().toLowerCase();
         if (state == 1) {
@@ -186,83 +178,5 @@ public class TwentyQuestions {
      */
     public void end() {
         System.exit(0);
-    }
-
-    //tostring methods below
-    //used just for troubleshooting
-
-    /**
-     * level order string from main program binary tree
-     */
-    public String levelOrder() {
-        // no recursion - you must use a stack or a queue (you figure out which)
-        // format should be the same as described in toString() above
-        String str = "";
-        Queue aq = new LinkedList();
-        aq.add(root);
-        while (!aq.isEmpty()) {
-            TreeNode o = (TreeNode) aq.remove();
-            if (o != null) {
-                if (o.getLeft() != null) {
-                    aq.add(o.getLeft());
-                }
-                if (o.getRight() != null) {
-                    aq.add(o.getRight());
-                }
-                str += o.getValue().toString() + ", ";
-            }
-        }
-        return anafy(str);
-    }
-
-    /**
-     * adds brackets on outside of toString methods
-     */
-    public String anafy(String str) {
-        str = "[" + str + "]";
-        int index = str.indexOf(", ]");
-        if (index != -1) {
-            str = str.substring(0, index);
-            str += "]";
-        }
-        index = str.indexOf(",]");
-        if (index != -1) {
-            str = str.substring(0, index);
-            str += "]";
-        }
-        return str;
-    }
-
-    /**
-     * returns string of binary tree in preorder
-     */
-    public String preOrder() {
-        // should be formatted the same way as described in toString() below
-        String str = preOrderRecursiveHelper(root);
-        str = anafy(str);
-        return str;
-    }
-
-    /**
-     * tostring preorder method for binary tree root
-     */
-    private String preOrderRecursiveHelper(TreeNode root) {
-        String str = "";
-        if (root == null) {
-            return "";
-        } else {
-            if (root.getValue() != null) {
-                str += root.getValue().toString();
-            } else {
-                str += "null";
-            }
-            if (root.getLeft() != null) {
-                str += ", " + preOrderRecursiveHelper(root.getLeft());
-            }
-            if (root.getRight() != null) {
-                str += ", " + preOrderRecursiveHelper(root.getRight());
-            }
-        }
-        return str;
     }
 }
