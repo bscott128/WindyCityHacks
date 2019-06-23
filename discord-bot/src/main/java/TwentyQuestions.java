@@ -47,7 +47,10 @@ public class TwentyQuestions {
             if (str.equals("%y") || str.equals("%yes")) { // yes
                 previousCurrent = current;
                 current = current.getLeft();
-
+                if (current==null) {
+                    sendMessage(event, "You lose, because it guessed it right.");
+                    return false;
+                }
             } else if (str.equals("%n") || str.equals("%no")) { // no
                 previousCurrent = current;
                 current = current.getRight();
