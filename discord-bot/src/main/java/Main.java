@@ -23,10 +23,9 @@ public class Main extends ListenerAdapter {
     }
 
     public boolean isCommand(String str) {
-        if (str.substring(0,1).equals("%")&&UserInterface.commands.contains(str.substring(1))) {
+        if (str.substring(0, 1).equals("%") && UserInterface.commands.contains(str.substring(1))) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

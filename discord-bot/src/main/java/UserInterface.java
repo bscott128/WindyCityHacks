@@ -1,5 +1,6 @@
 //import net.dv8tion.jda.core.AccountType;
 //import net.dv8tion.jda.core.JDABuilder;
+
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -10,30 +11,22 @@ import java.util.*;
 
 import java.util.*;
 
-public class UserInterface{
-<<<<<<< HEAD
-<<<<<<< HEAD
+public class UserInterface {
+
     public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
-=======
-<<<<<<< HEAD
+
     public static Set<String> commands = new Set();
-=======
->>>>>>> c843558a7765f0ea22ea88265a54a3c765fa57d7
 
     public static Set<String> commands = new HashSet<String>();
->>>>>>> 767eac36f583b337f4847b0fad61a7047b2abce2
     public static String[] validCommands = {"dank"};
-    public void processCommand(MessageReceivedEvent event)
-    {
+
+    public void processCommand(MessageReceivedEvent event) {
         commands.addAll(Arrays.asList(validCommands));
-<<<<<<< HEAD
-=======
+
         String command = event.getMessage().getContentRaw();
-        if(!commands.contains(command))
-        {
+        if (!commands.contains(command)) {
 
         }
->>>>>>> c843558a7765f0ea22ea88265a54a3c765fa57d7
     }
 
 
