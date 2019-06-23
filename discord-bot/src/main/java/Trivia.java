@@ -43,6 +43,10 @@ public class Trivia {
                 if (!str.equals("a") || !str.equals("b") || !str.equals("c") || !str.equals("d") || !str.equals("quit")) {
                     str = getMessage(event);
                 }
+                state++;
+            }
+        }
+            else if(state == 2 && playing){
                 if (str.equals("quit")) {
                     sendMessage(event, "Thanks for playing");
                     playing = false;
@@ -58,7 +62,7 @@ public class Trivia {
                 state = 0;
             }
         }
-    }
+
 
     private String getMessage(MessageReceivedEvent event) {
         return event.getMessage().getContentRaw().toLowerCase();
