@@ -32,9 +32,6 @@ public class Main extends ListenerAdapter {
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
-        if (message.equals("high")) {
-            event.getChannel().sendMessage("IQ").queue();
-        }
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
         if (attatchments.size() > 0) {
             List<Message.Attachment> images = new LinkedList();

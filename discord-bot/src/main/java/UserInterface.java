@@ -18,7 +18,8 @@ public class UserInterface {
 
     public static Command[] validCommands =
             {
-                    new Command("help", "Used to gain information about commands.")
+                    new Command("help", "USAGE %help <command> | Used to gain information about commands."),
+                    new Command("hello", "USAGE %hello | Greets the user who used the command")
             };
 
     public UserInterface()
@@ -30,14 +31,31 @@ public class UserInterface {
     public void processCommand(MessageReceivedEvent event)
     {
         String message = event.getMessage().getContentRaw();
-        String command = message.split(" ")[0];
+        String[] arguments = message.split(" ");
+        String command = arguments[0];
         try {
             if (!commands.containsKey(command)) {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
-            } else if (command.equals("%help")) {
-
+            }else if(command.equals("%hello"))
+            {
+                message(event, "Hello!");
+            }else if (command.equals("%help")) {
+                if(arguments.length == 1)
+                {
+                    Iterator<Command> iter  = commands.values().iterator();
+                    while(iter.hasNext())
+                    {
+                        Command c = iter.next();
+                        message(event, "**" + c.name + "**" + " - " + c.description);
+                    }
+                }else
+                {
+                    message(event, commands.get(arguments[1]).description);
+                }
             }
-        } catch
+        } catch (ArrayIndexOutOfBoundsException e) {
+            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used")
+        }
     }
 
     private void message(MessageReceivedEvent event, String message)
