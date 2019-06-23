@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dada8671-86ee-49c7-ac0d-82cc23e5285a" name="Default Changelist" comment="" />
+    <list default="true" id="dada8671-86ee-49c7-ac0d-82cc23e5285a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Trivia.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discord-bot/src/main/java/Trivia.java" beforeDir="false" afterPath="$PROJECT_DIR$/discord-bot/src/main/java/Trivia.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/discord-bot/src/main/java/Trivia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
-              <caret line="91" column="59" lean-forward="true" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+            <state relative-caret-position="-297">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -348,9 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/discord-bot/src/main/java/TQGame.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/discord-bot/src/main/java/TriviaNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -368,10 +368,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/discord-bot/src/main/java/TQGame.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/discord-bot/src/main/java/Trivia.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="91" column="59" lean-forward="true" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+        <state relative-caret-position="-297">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
