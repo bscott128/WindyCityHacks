@@ -9,7 +9,7 @@ public class Games {
     }
 
     private void trivia(){//bot asks a question - user types in a, b, c, d, or q
-        LinkedList<TriviaNode> l = triviaHelper();
+        //LinkedList<TriviaNode> l = triviaHelper();
     }
 
     private LinkedList<TriviaNode> triviaHelper(){
