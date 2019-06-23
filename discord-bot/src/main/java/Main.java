@@ -21,10 +21,14 @@ public class Main extends ListenerAdapter {
         builder.addEventListener(new Main());
         builder.build();
 
+
     }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        System.out.println("1");
+        Trivia t = new Trivia(event);
+        System.out.println("over");
         String message = event.getMessage().getContentRaw().toLowerCase();
         currentCommand = message;
         if (!message.equals("")&&(!event.getAuthor().isBot()))
