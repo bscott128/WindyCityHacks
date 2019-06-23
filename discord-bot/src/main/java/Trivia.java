@@ -12,7 +12,7 @@ public class Trivia{
         playGame(event);
     }
 
-    private void playGame(MessageReceivedEvent event){
+    public void playGame(MessageReceivedEvent event){
         if(state == 0&&true) {
 
             int n = (int) (Math.random() * 50);
@@ -39,9 +39,9 @@ public class Trivia{
             }
 
             String str = event.getMessage().getContentRaw().toLowerCase();
-            if (str.substring(0, 7).equals("%trivia")) {
-                str = str.substring(7, str.length());
-                if (!str.equals(" a") || !str.equals(" b") || !str.equals(" c") || !str.equals(" d") || !str.equals(" quit")) {
+            //if (str.substring(0, 7).equals("%trivia")) {
+                //str = str.substring(7, str.length());
+                if (!str.equals("a") || !str.equals("b") || !str.equals("c") || !str.equals("d") || !str.equals("quit")) {
                     str = getMessage(event);
                 }
                 if (str.equals("quit")) {
@@ -55,7 +55,7 @@ public class Trivia{
                     sendMessage(event, "The game is finished");
                     playing = false;
                 }
-            }
+           // }
             state = 0;
         }
     }
