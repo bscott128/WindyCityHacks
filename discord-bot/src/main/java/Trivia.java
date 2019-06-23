@@ -9,6 +9,7 @@ public class Trivia {
     int state = 0;
     boolean playing = false;
     public int n;
+    boolean justStarted = true;
     public String[] choices;
 
     public Trivia(MessageReceivedEvent event) {
@@ -19,7 +20,7 @@ public class Trivia {
 
     public int getIndexRightAnswer() {
         String right = l.get(n).a;
-        for (int i = 0; i<choices.length;i++) {
+        for (int i = 0; i < choices.length; i++) {
             if (choices[i].equals(right)) {
                 return i;
             }
@@ -28,6 +29,12 @@ public class Trivia {
     }
 
     public void playGame(MessageReceivedEvent event) {
+        if (event.getMessage().getContentRaw().toLowerCase().substring(1).equals("end")) {
+            sendMessage(event, "Thanks for playing");
+            playing = false;
+            state = 666;
+            return;
+        }
         if (state == 0 && true) {
 
             n = (int) (Math.random() * 50);
@@ -38,8 +45,8 @@ public class Trivia {
             {
                 TriviaNode node = l.get(n);
                 choices = node.choices();
-                String mes = l.get(n).q + "\n A: " + choices[0] + "\n B: " + choices[1] + "\n C: " + choices[2] + "\n" +
-                        "D: " + choices[3] + "\n quit";
+                String mes = l.get(n).q + "\n %A: " + choices[0] + "\n %B: " + choices[1] + "\n %C: " + choices[2] + "\n" +
+                        " %D: " + choices[3] + "\n %end";
                 sendMessage(event, mes);
             }
             state++;
@@ -53,43 +60,40 @@ public class Trivia {
                 }
                 state++;
             }
-        } else if (state == 2 && playing) {
+        } else if (state == 2 && playing && !event.getMessage().getContentRaw().toLowerCase().equals("%play, trivia")) {
             String str = event.getMessage().getContentRaw().toLowerCase().substring(1);
             int letterChoice = strToInt(str);
-            if (str.equals("end")) {
-                sendMessage(event, "Thanks for playing");
-                playing = false;
-            } else if (letterChoice==getIndexRightAnswer()) {
-                sendMessage(event, "Correct");
-            } else {
-                sendMessage(event, "Wrong");
-            }
-            if (s.size() == 50) {
-                sendMessage(event, "The game is finished");
-                playing = false;
-            }
-            // }
-            state = 0;
+        if (letterChoice == getIndexRightAnswer()) {
+            sendMessage(event, "Correct");
+        } else {
+            sendMessage(event, "Wrong");
         }
+        if (s.size() == 50) {
+            sendMessage(event, "The game is finished");
+            playing = false;
+        }
+        // }
+        state = 0;
     }
+
+}
 
     public int strToInt(String s) {
         char c = s.charAt(0);
-        if (c=='a') {
+        if (c == 'a') {
             return 0;
         }
-        if (c=='b') {
+        if (c == 'b') {
             return 1;
         }
-        if (c=='b') {
+        if (c == 'b') {
             return 2;
         }
-        if (c=='b') {
+        if (c == 'b') {
             return 3;
         }
         return -1;
     }
-
 
 
     private String getMessage(MessageReceivedEvent event) {

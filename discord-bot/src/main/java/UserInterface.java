@@ -32,7 +32,9 @@ public class UserInterface {
                     new Command("randomfact", "Displays a random fact.\n\tUSAGE:\n\t\t%randomfact\n\t"),
                     new Command("about", "Displays information about this bot.\n\tUSAGE:\n\t\t%about\n\t"),
                     new Command("help", "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help, <command>\n\t"),
-                    new Command("pic","Pulls up a random picture that's been saved as the bot has been running\n\tUSAGE:\n\t\t%pic")
+                    new Command("pic","Pulls up a random picture that's been saved as the bot has been running\n\tUSAGE:\n\t\t%pic"),
+                    new Command("kill","Takes the entire bot offline/kills process\n\tUSAGE:\n\t\t%kill"),
+                    new Command("end","Stops a game process\n\tUSAGE:\n\t\t%end")
 
             };
 

@@ -31,11 +31,13 @@ public class Main extends ListenerAdapter {
         if (message.equals("%play, trivia")) {
             triviaGame = new Trivia(event);
         }
-        if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
-            if (message.equals("%play, 20qs")) {
-                tqGame = new TQGame();
-                game = 1;
-            }
+        if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot())) {
+            triviaGame.playGame(event);
+        }
+        if (message.equals("%play, 20qs")) {
+            tqGame = new TQGame();
+            game = 1;
+        }
         if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot())) {
             triviaGame.playGame(event);
         }
@@ -75,6 +77,9 @@ public class Main extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
+        if (message.equals("%kill")) {
+            System.exit(0);
+        }
         currentCommand = message;
         if (!message.equals("") && (!event.getAuthor().isBot()))
             u.processCommand(event);
