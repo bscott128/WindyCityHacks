@@ -10,9 +10,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main extends ListenerAdapter {
-    public static UserInterface u = new UserInterface();
+    public static UserInterface u;
 
     public static void main(String[] args) throws LoginException {
+        u = new UserInterface();
         JDABuilder builder = new JDABuilder(AccountType.BOT);
         String token = "NTkyMDcxNzQ1MzY4ODgzMjAx.XQ6BEg.4R-ELWcxc6fJfXHMvykbDi7Yjiw";
         builder.setToken(token);
@@ -23,8 +24,8 @@ public class Main extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        String messag = event.getMessage().getContentRaw();
-        if (!messag.equals("")&&(!event.getAuthor().isBot()))
+        String message = event.getMessage().getContentRaw();
+        if (!message.equals("")&&(!event.getAuthor().isBot()))
             u.main(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
@@ -40,17 +41,19 @@ public class Main extends ListenerAdapter {
                     images.add(mess);
                 }
             }
-            for (Message.Attachment message : images) {
-                String fileName = message.getFileName();
+            for (Message.Attachment messageImage : images) {
+                String fileName = messageImage.getFileName();
                 int period = fileName.indexOf(".");
                 String fileType = fileName.substring(period);
-                int hash = message.hashCode();
+                int hash = messageImage.hashCode();
                 File tempFile = new File("./images/" + hash + fileType);
-                message.download(tempFile);
+                messageImage.download(tempFile);
                 event.getChannel().sendMessage("Image downloaded as " + hash + fileType).queue();
             }
             event.getChannel().sendMessage("" + images.size() + " images downloaded").queue();
         }
     }
+
+
 
 }
