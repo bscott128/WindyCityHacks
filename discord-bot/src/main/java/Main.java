@@ -63,6 +63,9 @@ public class Main extends ListenerAdapter {
 
     private boolean isCommandAttempt(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
+        if (message.equals("")) {
+            return false;
+        }
         if (message.substring(0, 1).equals("%")) {
             return true;
         }
@@ -84,7 +87,7 @@ public class Main extends ListenerAdapter {
         if (isCommandAttempt(event)) {
             stepGames(event, message);
         }
-        if (!message.equals("") && (!event.getAuthor().isBot())) {
+        if ((!event.getAuthor().isBot())) {
             List<Message.Attachment> attatchments = event.getMessage().getAttachments();
             if (attatchments.size() > 0) {
                 List<Message.Attachment> images = new LinkedList();
