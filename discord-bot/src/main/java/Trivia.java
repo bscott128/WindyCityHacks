@@ -16,6 +16,7 @@ public class Trivia{
             while(s.contains(n)) {
                 n = (int)(Math.random() * 50);
             }
+            s.add(n);
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
