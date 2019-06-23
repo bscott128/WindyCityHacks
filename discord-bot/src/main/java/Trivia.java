@@ -5,6 +5,7 @@ public class Trivia{
     LinkedList<TriviaNode> l;
     public Trivia(MessageReceivedEvent event){
         l = triviaSetup();
+        System.out.println(l.size());
         playGame(event);
     }
 
@@ -68,6 +69,7 @@ public class Trivia{
         catch (Exception e){
             System.out.println(e);
         }
+        System.out.println(l.size());
         return l;
     }
 
@@ -81,8 +83,15 @@ public class Trivia{
             while(!t.substring(t.length()-1, t.length()).equals("}")){
                 t += " " + scan.next();
             }
+<<<<<<< HEAD
+            System.out.println("checkpoint1");
+=======
+>>>>>>> c2ed7b49abe26e327faa2703c164c8324a0bf95f
             String q = t.substring(0, t.indexOf("correct_answer")-3);
+            System.out.println("checkpoint2");
             String a = t.substring(t.indexOf("correct_answer")+17, t.indexOf("incorrect_answer")-3);
+            System.out.println("checkpoint3");
+
             String w = t.substring(t.indexOf("[")+1, t.indexOf("]"));
             String w1 = w.substring(1, w.indexOf("\"", 1));
             w = w.substring(w.indexOf(",")+1, w.length());
@@ -91,6 +100,7 @@ public class Trivia{
             String w3 = w.substring(1, w.indexOf("\"", 1));
             l.add(new TriviaNode(q, a, w1, w2, w3));
         }
+        System.out.println(l.size());
         return l;
     }
 }
