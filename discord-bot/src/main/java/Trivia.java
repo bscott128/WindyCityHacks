@@ -1,11 +1,14 @@
 import java.util.*;
 import java.io.*;
+import net.dv8tion.jda.client.entities;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Trivia{
+    HashMap<User, int> map = new HashMap<>();
     LinkedList<TriviaNode> l;
     int state = 0;
     boolean playing = false;
     public Trivia(MessageReceivedEvent event){
+        List l = event.group.getUsers();
         l = triviaSetup();
         playing = true;
         playGame(event);
