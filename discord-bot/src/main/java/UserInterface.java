@@ -14,22 +14,45 @@ import java.util.*;
 
 public class UserInterface {
 
-    public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
+    public static Map<String, Command> commands = new HashMap(); // gotta have that O(1)
 
-    public static String[] validCommands = {"dank"};
+    public static Command[] validCommands =
+            {
 
-    public void processCommand(MessageReceivedEvent event) {
-        commands.addAll(Arrays.asList(validCommands));
+            };
 
-        String command = event.getMessage().getContentRaw();
-        if (!commands.contains(command)) {
+    public UserInterface()
+    {
+        for(Command c : validCommands)
+            commands.put("%"+c.name,c);
+    }
 
+    public void processCommand(MessageReceivedEvent event)
+    {
+        String message = event.getMessage().getContentRaw();
+        String command
+        if(!commands.containsKey(event))
+        {
+            System
         }
     }
 
+    private void message(MessageReceivedEvent event, String message)
+    {
+        event.getChannel().sendMessage(message).queue();
+    }
 
 }
 
+class Command
+{
+    String name, description;
+    public Command(String n, String d)
+        {
+            name = n;
+            description = d;
+        }
+}
 /*public class UserInterface{
     Set<String> commands = new HashSet<String>();
     MessageReceivedEvent event;
