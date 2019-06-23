@@ -40,6 +40,7 @@ public class UserInterface{
 
     private void declareCommands(){
         commands.add("help");
+
         //File folder = new File(".");
         //File[] listFiles = folder.listFiles();
 
