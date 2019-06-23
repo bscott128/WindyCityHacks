@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="843ee153-ca55-49fa-a796-5072e72cabd3" name="Default Changelist" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
       <change afterPath="$PROJECT_DIR$/.idea/libraries/opencv.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/ImageIdentifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -58,9 +61,12 @@
     <leaf>
 <<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -73,7 +79,10 @@
 =======
       <file pinned="false" current-in-tab="true">
 >>>>>>> c0680b31bd5fa724218d0b83d6410e2486420010
+<<<<<<< HEAD
 >>>>>>> 85356511d19950542001f3a3efbc2eb60f353f6d
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="281">
@@ -88,6 +97,18 @@
       <file pinned="false" current-in-tab="true">
 <<<<<<< HEAD
 =======
+        <entry file="file://$PROJECT_DIR$/src/main/java/ImageIdentifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ImageIdentifier.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -134,14 +155,20 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/UserInterface.java" />
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/ImageIdentifier.java" />
 =======
 >>>>>>> c0680b31bd5fa724218d0b83d6410e2486420010
+<<<<<<< HEAD
 >>>>>>> 85356511d19950542001f3a3efbc2eb60f353f6d
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
       </list>
     </option>
   </component>
@@ -215,7 +242,10 @@
 =======
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496318" />
 >>>>>>> c0680b31bd5fa724218d0b83d6410e2486420010
+<<<<<<< HEAD
 >>>>>>> 85356511d19950542001f3a3efbc2eb60f353f6d
+=======
+>>>>>>> 88070f32271eb309a9e4e75d0f76a1c201058ffb
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -278,6 +308,16 @@
             <element signature="e#440#448#0" expanded="true" />
             <element signature="e#1594#1595#0" expanded="true" />
             <element signature="e#1614#1615#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ImageIdentifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
