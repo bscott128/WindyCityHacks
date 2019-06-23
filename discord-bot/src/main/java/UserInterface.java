@@ -32,7 +32,7 @@ public class UserInterface {
                     new Command("randomfact", "Displays a random fact.\n\tUSAGE:\n\t\t%randomfact\n\t"),
                     new Command("about", "Displays information about this bot.\n\tUSAGE:\n\t\t%about\n\t"),
                     new Command("help", "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help, <command>\n\t"),
-                    new Command("contact", "Displays contact info of the developers.\n\tUSAGE:\n\t\t%contact\n\t"),
+
             };
 
     public UserInterface() {
@@ -40,6 +40,18 @@ public class UserInterface {
         rules = new LinkedList();
         for (Command c : validCommands)
             commands.put("%" + c.name, c);
+    }
+
+    private boolean isValidCommand(String command)
+    {
+        if(command.length() < 3)
+                return false;
+        char c1 = command.charAt(1);
+        char c2 = command.charAt(2);
+        if((c1 == 'a' || c1 == 'b' || c1 == 'c') && (c2 == '1' || c2 == '2' || c2 == '3'))
+            return true;
+        if(!commands.containsKey(command))
+            return false;
     }
 
     public void processCommand(MessageReceivedEvent event) {
@@ -50,7 +62,7 @@ public class UserInterface {
         try {
             if (message.charAt(0) != '%')
                 return;
-            else if (!commands.containsKey(command)) {
+            else if () {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
             } else if (command.equals("%play")) {
                 if (arguments[1].equals("tictactoe")) {
