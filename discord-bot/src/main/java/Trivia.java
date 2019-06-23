@@ -35,8 +35,8 @@ public class Trivia{
             }
 
             String str = event.getMessage().getContentRaw().toLowerCase();
-            //if (str.substring(0, 7).equals("%trivia")) {
-                //str = str.substring(7, str.length());
+            if (str.substring(0, 1).equals("%")) {
+                str = str.substring(1, str.length());
                 if (!str.equals("a") || !str.equals("b") || !str.equals("c") || !str.equals("d") || !str.equals("quit")) {
                     str = getMessage(event);
                 }
