@@ -54,7 +54,7 @@ public class UserInterface {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used")
+            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used");
         }
     }
 
