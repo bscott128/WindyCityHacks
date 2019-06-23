@@ -32,6 +32,7 @@ public class UserInterface {
                     new Command("randomfact", "Displays a random fact.\n\tUSAGE:\n\t\t%randomfact\n\t"),
                     new Command("about", "Displays information about this bot.\n\tUSAGE:\n\t\t%about\n\t"),
                     new Command("help", "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help, <command>\n\t"),
+                    new Command("pic","Pulls up a random picture that's been saved as the bot has been running\n\tUSAGE:\n\t\t%pic")
 
             };
 
@@ -123,6 +124,14 @@ public class UserInterface {
                 }
             } else if (command.equals("%contact")) {
                 message(event, "Contact the developers @Scott#7134, will.schlach#8897, boozy#7833");
+            }
+            else if (command.equals("%pic")) {
+                File tempFile = new File("images/");
+                File[] images = tempFile.listFiles();
+                int randIndex = (int)(Math.random()*images.length);
+                File randImage = images[randIndex];
+                message(event,"Retrieving random image: " + randImage.getName());
+                event.getChannel().sendFile(randImage).queue();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             message(event, "You did not provide sufficient arguments for that command, or you did not properly format your arguments. Try using \"help\" to see how it is properly used");

@@ -36,11 +36,10 @@ public class Main extends ListenerAdapter {
                 tqGame = new TQGame();
                 game = 1;
             }
-        if(triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
-        {
+        if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot())) {
             triviaGame.playGame(event);
         }
-            if (message.equals("%play, 20qs")) {
+        if (message.equals("%play, 20qs")) {
             tqGame = new TQGame();
             game = 1;
         }
@@ -85,25 +84,26 @@ public class Main extends ListenerAdapter {
         if (isCommandAttempt(event)) {
             stepGames(event, message);
         }
-
-        List<Message.Attachment> attatchments = event.getMessage().getAttachments();
-        if (attatchments.size() > 0) {
-            List<Message.Attachment> images = new LinkedList();
-            for (Message.Attachment mess : attatchments) {
-                if (mess.isImage()) {
-                    images.add(mess);
+        if (!message.equals("") && (!event.getAuthor().isBot())) {
+            List<Message.Attachment> attatchments = event.getMessage().getAttachments();
+            if (attatchments.size() > 0) {
+                List<Message.Attachment> images = new LinkedList();
+                for (Message.Attachment mess : attatchments) {
+                    if (mess.isImage()) {
+                        images.add(mess);
+                    }
                 }
+                for (Message.Attachment messageImage : images) {
+                    String fileName = messageImage.getFileName();
+                    int period = fileName.indexOf(".");
+                    String fileType = fileName.substring(period);
+                    int hash = messageImage.hashCode();
+                    File tempFile = new File("./images/" + hash + fileType);
+                    messageImage.download(tempFile);
+                    event.getChannel().sendMessage("Image downloaded as " + hash + fileType).queue();
+                }
+                event.getChannel().sendMessage("" + images.size() + " images downloaded").queue();
             }
-            for (Message.Attachment messageImage : images) {
-                String fileName = messageImage.getFileName();
-                int period = fileName.indexOf(".");
-                String fileType = fileName.substring(period);
-                int hash = messageImage.hashCode();
-                File tempFile = new File("./images/" + hash + fileType);
-                messageImage.download(tempFile);
-                event.getChannel().sendMessage("Image downloaded as " + hash + fileType).queue();
-            }
-            event.getChannel().sendMessage("" + images.size() + " images downloaded").queue();
         }
     }
 
