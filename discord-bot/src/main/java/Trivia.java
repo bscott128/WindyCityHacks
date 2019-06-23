@@ -4,11 +4,13 @@ import net.dv8tion.jda.client.entities;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Trivia{
     HashMap<User, int> map = new HashMap<>();
+    Set<Integer> s;
     LinkedList<TriviaNode> l;
     int state = 0;
     boolean playing = false;
     public Trivia(MessageReceivedEvent event){
         List l = event.group.getUsers();
+        s = new HashSet<Integer>();
         l = triviaSetup();
         playing = true;
         playGame(event);
@@ -16,7 +18,6 @@ public class Trivia{
 
     private void playGame(MessageReceivedEvent event){
         if(state == 0&&true) {
-            Set<Integer> s = new HashSet<Integer>();
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
                 n = (int) (Math.random() * 50);
