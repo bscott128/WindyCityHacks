@@ -1,0 +1,39 @@
+#Q:Does it treat physical ailments?
+#Q:Is it meant to treat pain?
+#Q:Can it easily cause liver failure?
+Is it acetaminophen?
+#Q:Is it an NSAID?
+#Q:Does it thin the blood?
+Is it aspirin?
+Is it ibuprofen?
+#Q:Does it numb pain locally?
+Is it cocaine?
+#Q:Does it activate cannabinoid receptors?
+Is it Tetrahydrocannabinol (THC)?
+#Q:Does it treat severe and chronic pain?
+Is it morphine?
+#Q:Does it treat migranes?
+Is it naratriptan?
+Is it vicodin?
+#Q:Does it treat a heart condition?
+#Q:Does it dilate veins?
+Is it nitroglycerin?
+Is it propranolol?
+#Q:Does it treat infections?
+Is it amoxicillin?
+#Q:Does it treat cancer?
+Is it velcade?
+#Q:Does it treat swollen nasal mucous membranes?
+Is it pseudoephedrine?
+Is it viagra?
+#Q:Does it treat a learning condition?
+#Q:Does it have two methyl groups?
+Is it desoxyn?
+#Q:Does it last for 4-6 hours?
+Is it amphetamine sulfate?
+Is it methylphenidate?
+#Q:Does it increase neuroplasticity?
+Is it psilocybin?
+#Q:Is it meant to primarily reduce fatigue and drowsiness?
+Is it caffeine?
+Is it prozac?
