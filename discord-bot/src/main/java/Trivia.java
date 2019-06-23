@@ -6,7 +6,6 @@ public class Trivia{
     public Trivia(MessageReceivedEvent event){
         l = triviaSetup();
         playGame(event);
-        System.out.println("5");
     }
 
     private void playGame(MessageReceivedEvent event){
