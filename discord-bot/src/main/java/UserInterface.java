@@ -9,17 +9,24 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 //import javax.security.auth.login.LoginException;
 import java.util.*;
 
-import java.util.*;
+import java.io.*;
 
 
 public class UserInterface {
+
+    private String motd, rules;
 
     public static Map<String, Command> commands = new HashMap(); // gotta have that O(1)
 
     public static Command[] validCommands =
             {
-                    new Command("help", "USAGE %help <command> | Used to gain information about commands."),
-                    new Command("hello", "USAGE %hello | Greets the user who used the command")
+                    new Command("play",         "Plays one of three games.\n\tUSAGE:\n\t\t%play <tictactoe/20qs/trivia>\n\t"),
+                    new Command("motd",         "Displays the message of the day.\n\tUSAGE:\n\t\t%motd\n\t\t%motd <MESSAGE>\n\t"),
+                    new Command("rules",        "Allows for the display and editing of rules.\n\tUSAGE:\n\t\t%rules\n\t\t%rules <add/remove> <RULE>\n\t"),
+                    new Command("randomfact",   "Displays a random fact.\n\tUSAGE:\n\t\t%randomfact\n\t"),
+                    new Command("about",        "Displays information about this bot.\n\tUSAGE:\n\t\t%about\n\t"),
+                    new Command("help",         "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help <command>\n\t"),
+                    new Command("contact",      "Displays contact info of the developers.\n\tUSAGE:\n\t\t%contact\n\t"),
             };
 
     public UserInterface()
@@ -34,27 +41,49 @@ public class UserInterface {
         String[] arguments = message.split(" ");
         String command = arguments[0];
         try {
-            if (!commands.containsKey(command)) {
+            if(message.charAt(0) != '%')
+                return;
+            else if (!commands.containsKey(command)) {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
-            }else if(command.equals("%hello"))
+            }else if(command.equals("%motd"))
             {
-                message(event, "Hello!");
-            }else if (command.equals("%help")) {
+                if(arguments.length == 1)
+                {
+                    message(event,"");
+                }else
+                {
+
+                }
+            }else if(command.equals("%rules")) {
+            }
+            else if(command.equals("%randomfact")) {
+            }
+            else if(true) {
+            }
+            else if (command.equals("%help")) {
                 if(arguments.length == 1)
                 {
                     Iterator<Command> iter  = commands.values().iterator();
+                    String msg = "";
                     while(iter.hasNext())
                     {
                         Command c = iter.next();
-                        message(event, "**" + c.name + "**" + " - " + c.description);
+                        msg += "**" + c.name + "**" + " - " + c.description + "\n";
                     }
+                    message(event, msg);
                 }else
                 {
-                    message(event, commands.get(arguments[1]).description);
+                    if(!commands.containsKey("%" + arguments[1]))
+                        message(event, "Please enter a valid command for which you want help.");
+                    else
+                        message(event, commands.get("%" + arguments[1]).description);
                 }
+            }else if (command.equals("%contact"))
+            {
+
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used")
+            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used");
         }
     }
 
