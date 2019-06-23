@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Games {
 
+
     public Games(String game){
         if(game.equals("trivia")){
             trivia();

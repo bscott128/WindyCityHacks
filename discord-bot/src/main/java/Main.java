@@ -10,8 +10,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main extends ListenerAdapter {
+    private static TQGame tqGame = new TQGame();
     public static UserInterface u;
     public static String currentCommand;
+    public static int game = 0;
 
     public static void main(String[] args) throws LoginException {
         u = new UserInterface();
@@ -24,7 +26,7 @@ public class Main extends ListenerAdapter {
     }
 
     public boolean isCommand(String str) {
-        if (str.substring(0, 1).equals("%") && UserInterface.commands.contains(str.substring(1))) {
+        if (str.substring(0, 1).equals("%") && UserInterface.commands.containsKey(str.substring(1))) {
             return true;
         } else {
             return false;
@@ -42,6 +44,16 @@ public class Main extends ListenerAdapter {
                 event.getMessage().getContentDisplay());
         if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
+        }
+        if (message.equals("%tq")) {
+            tqGame = new TQGame();
+            game = 1;
+        }
+        if (game==1&&(!event.getAuthor().isBot())) {
+            tqGame.next(event);
+            if (tqGame.state==666) {
+                game = 0;
+            }
         }
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
         if (attatchments.size() > 0) {

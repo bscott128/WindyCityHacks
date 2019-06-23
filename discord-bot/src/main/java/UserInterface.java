@@ -30,10 +30,9 @@ public class UserInterface {
     public void processCommand(MessageReceivedEvent event)
     {
         String message = event.getMessage().getContentRaw();
-        String command
         if(!commands.containsKey(event))
         {
-            System
+
         }
     }
 
