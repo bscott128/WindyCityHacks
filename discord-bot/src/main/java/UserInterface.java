@@ -11,6 +11,7 @@ import java.util.*;
 
 import java.util.*;
 
+<<<<<<< HEAD
 public class UserInterface {
 
     public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
@@ -18,11 +19,18 @@ public class UserInterface {
     public static Set<String> commands = new Set();
 
     public static Set<String> commands = new HashSet<String>();
+=======
+public class UserInterface{
+    public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
+>>>>>>> 57685baa308d05b52af023d9b4a0c45ec24b8846
     public static String[] validCommands = {"dank"};
 
     public void processCommand(MessageReceivedEvent event) {
         commands.addAll(Arrays.asList(validCommands));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57685baa308d05b52af023d9b4a0c45ec24b8846
         String command = event.getMessage().getContentRaw();
         if (!commands.contains(command)) {
 
