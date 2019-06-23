@@ -6,9 +6,9 @@ public class TTTGame {
     public static final byte ZERO = 0b10;
     public static final byte DEFAULT = 0b0;
     public static boolean playerTurn;//false=x player, true=o player turn
-    public static String[][] table;
+    public static String[][] table = new String[3][3];
 
-    public TTTGame() {
+    public TTTGame(MessageReceivedEvent event) {
         playerTurn = false;
         table = new String[3][3];
         for (int i = 0; i < table.length; i++) {
@@ -20,7 +20,7 @@ public class TTTGame {
 
     public static final String visualTable =
             "```      |   |\n" +
-                    " 3 " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
+                    " 3  " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
                     "   ___|___|___\n" +
                     "      |   |\n" +
                     " 2  " + table[1][0] + " | " + table[1][1] + " | " + table[1][2] + "\n" +
@@ -33,7 +33,7 @@ public class TTTGame {
     public static final String refreshVisualTable() {
         String vt =
                 "```      |   |\n" +
-                        " 3 " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
+                        " 3  " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
                         "   ___|___|___\n" +
                         "      |   |\n" +
                         " 2  " + table[1][0] + " | " + table[1][1] + " | " + table[1][2] + "\n" +
@@ -62,7 +62,7 @@ public class TTTGame {
         for (int i = 0; i < table.length; i++) {
             String temp = table[i][0];
             for (int j = 0; j < table[i].length; j++) {
-                if (table[i][j] == " ") {
+                if ((temp == "X" || temp == "O") && table[i][j] == temp) {
                     count++;
                 }
             }
@@ -73,10 +73,10 @@ public class TTTGame {
             count = 0;
         }
         count = 0;
-        for (int i = 0; i < table[i].length; i++) {
+        for (int i = 0; i < 3; i++) {
             String temp = table[0][i];
-            for (int j = 0; j < table.length; j++) {
-                if (table[j][i] == " ") {
+            for (int j = 0; j < 3; j++) {
+                if ((temp == "X" || temp == "O") && table[j][i] == temp) {
                     count++;
                 }
             }
@@ -101,20 +101,16 @@ public class TTTGame {
 
 
     public void next(MessageReceivedEvent event) {
-
         isDone(event);
-        if (state != 666) {
+        if (state != 666 && !event.getAuthor().isBot()) {
 
             String message = event.getMessage().getContentRaw().toLowerCase();
             String mark;
-            if (playerTurn == false) { // X player
+            if (!playerTurn) { // X player
                 mark = "X";
             } else { // O player
                 mark = "O";
             }
-
-            event.getChannel().sendMessage("Player " + mark + " turn").queue();
-            event.getChannel().sendMessage(refreshVisualTable()).queue();
 
 
             if (message.equals("a3")) {
@@ -181,9 +177,19 @@ public class TTTGame {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
             } else {
-                event.getChannel().sendMessage("That's not a valid coordinate").queue();
+                if (!message.equals("%ttt"))
+                    event.getChannel().sendMessage("That's not a valid coordinate").queue();
             }
+            if (message != "%ttt") {
+                if (!playerTurn) { // X player
+                    mark = "X";
+                } else { // O player
+                    mark = "O";
+                }
+                event.getChannel().sendMessage("Player " + mark + " turn").queue();
+                event.getChannel().sendMessage(refreshVisualTable()).queue();
+            }
+            isDone(event);
         }
-
     }
 }
