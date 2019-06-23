@@ -6,7 +6,7 @@ public class TTTGame {
     public static final byte ZERO = 0b10;
     public static final byte DEFAULT = 0b0;
     public static boolean playerTurn;//false=x player, true=o player turn
-    public static String[][] table = new String[3][3];
+    public String[][] table = new String[3][3];
 
     public TTTGame(MessageReceivedEvent event) {
         playerTurn = false;
@@ -18,7 +18,7 @@ public class TTTGame {
         }
     }
 
-    public static final String visualTable =
+    public String visualTable =
             "```      |   |\n" +
                     " 3  " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
                     "   ___|___|___\n" +
@@ -30,7 +30,7 @@ public class TTTGame {
                     "      |   |\n" +
                     "    A   B   C```";
 
-    public static final String refreshVisualTable() {
+    public String refreshVisualTable() {
         String vt =
                 "```      |   |\n" +
                         " 3  " + table[0][0] + " | " + table[0][1] + " | " + table[0][2] + "\n" +
@@ -180,18 +180,16 @@ public class TTTGame {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
             } else {
-                if (!message.equals("%ttt")&&message.substring(0,1).equals("%"))
+                if (!message.equals("%play, tictactoe") && message.substring(0, 1).equals("%"))
                     event.getChannel().sendMessage("That's not a valid coordinate").queue();
             }
-            if (message != "%ttt") {
-                if (!playerTurn) { // X player
-                    mark = "X";
-                } else { // O player
-                    mark = "O";
-                }
-                event.getChannel().sendMessage("Player " + mark + " turn").queue();
-                event.getChannel().sendMessage(refreshVisualTable()).queue();
+            if (!playerTurn) { // X player
+                mark = "X";
+            } else { // O player
+                mark = "O";
             }
+            event.getChannel().sendMessage("Player " + mark + " turn").queue();
+            event.getChannel().sendMessage(refreshVisualTable()).queue();
             isDone(event);
         }
     }
