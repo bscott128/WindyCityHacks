@@ -23,7 +23,7 @@ public class Trivia{
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
-                sendMessage(event, l.get(n).q + "A: " + choices[0] + "B: " + choices[1] + "C: " + choices[2] + "D: " + choices[3] + "quit");
+                sendMessage(event, l.get(n).q + /n"A: " + choices[0] + /n"B: " + choices[1] + /n"C: " + choices[2] + /n"D: " + choices[3] + /n"quit");
             }
             state++;
         }
