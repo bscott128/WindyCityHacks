@@ -33,7 +33,7 @@ public class Main extends ListenerAdapter {
         {
             triviaGame = new Trivia(event);
         }
-        if(triviaGame.playing && (!event.getAuthor().isBot()))
+        if(triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
         if (message.equals("%play, 20qs")) {
             tqGame = new TQGame();
             game = 1;
