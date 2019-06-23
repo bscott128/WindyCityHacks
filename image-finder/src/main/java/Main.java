@@ -5,8 +5,6 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-
-
 import javax.security.auth.login.LoginException;
 import java.util.*;
 import java.io.*;
