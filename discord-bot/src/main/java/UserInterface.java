@@ -48,7 +48,19 @@ public class UserInterface {
                 return;
             else if (!commands.containsKey(command)) {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
-            }else if(command.equals("%motd"))
+            }else if(command.equals("%play"))
+            {
+                if(arguments[1].equals("tictactoe")) {
+
+                }
+                else if(arguments[1].equals("20qs")) {
+
+                }
+                else if(arguments[1].equals("trivia")) {
+
+                }
+
+            } else if(command.equals("%motd"))
             {
                 if(arguments.length == 1)
                 {
