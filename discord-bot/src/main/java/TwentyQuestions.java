@@ -84,30 +84,6 @@ public class TwentyQuestions {
     }
 
     /**
-     * If player wins, makes a joptionpane input, gets the differentiating question
-     * and answer as an array of strings
-     */
-    public String[] getDifferentiatingQuestion() {
-        JTextField diffQuest = new JTextField(PANEL_LENGTH);
-        JTextField diffAnswer = new JTextField(PANEL_LENGTH / 2);
-        JPanel pan = new JPanel();
-        pan.add(new JLabel("Give a new question (no '?' at end)"));
-        pan.add(diffQuest);
-        pan.add(Box.createVerticalStrut(20));
-        pan.add(new JLabel("Is it ______? (only the answer)"));
-        pan.add(diffAnswer);
-        String[] qVals = null;
-        int result = JOptionPane.showConfirmDialog(null, pan,
-                "Please Enter Your Question Statements", JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.OK_OPTION) {
-            qVals = new String[DIFFER_QUEST_ARRAY_SIZE];
-            qVals[0] = diffQuest.getText();
-            qVals[1] = diffAnswer.getText();
-        }
-        return qVals;
-    }
-
-    /**
      * recursive read method, reads file based upon preorder into tree
      * if question, sets right and left of the node, otherwise, must
      * be an answer and hence a leaf
