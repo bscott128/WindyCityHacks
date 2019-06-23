@@ -43,12 +43,19 @@ public class UserInterface {
     }
 
     private boolean isValidCommand(String command) {
-        if (command.length() < 3)
+        if (command.length() < 2)
             return false;
-        char c1 = command.charAt(1);
-        char c2 = command.charAt(2);
-        if ((c1 == 'a' || c1 == 'b' || c1 == 'c') && (c2 == '1' || c2 == '2' || c2 == '3'))
-            return true;
+        if(command.length() == 2) {
+            char c1 = command.charAt(1);
+            if(c1 == 'y' || c1 == 'n')
+                return true;
+        }
+        if(command.length() == 3) {
+            char c1 = command.charAt(1);
+            char c2 = command.charAt(2);
+            if ((c1 == 'a' || c1 == 'b' || c1 == 'c') && (c2 == '1' || c2 == '2' || c2 == '3'))
+                return true;
+        }
         if (!commands.containsKey(command))
             return false;
         return true;
@@ -62,7 +69,7 @@ public class UserInterface {
         try {
             if (message.charAt(0) != '%')
                 return;
-            else if (isValidCommand(command)) {
+            else if (!isValidCommand(command)) {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
             } else if (command.equals("%play")) {
                 if (arguments[1].equals("tictactoe")) {
@@ -89,7 +96,14 @@ public class UserInterface {
                     rules.remove(Integer.parseInt(arguments[2]) - 1);
                 }
             } else if (command.equals("%randomfact")) {
-
+                try {
+                    BufferedReader b = new BufferedReader(new FileReader("facts.txt"));
+                    String s = "";
+                    for(int i = (int)(Math.random()*100); i < 100; i++)
+                        s = b.readLine();
+                    message(event, s);
+                } catch(Exception e)
+                {}
             } else if (command.equals("%about")) {
                 message(event, "V1.0 This bot was created in under 24 hours for Windy City Hacks 2019.");
             } else if (command.equals("%help")) {
