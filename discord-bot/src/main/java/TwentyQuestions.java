@@ -150,6 +150,18 @@ public class TwentyQuestions {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * @param q for the question
+     * returns a boolean from a joptionpane asking a yes/no/cancel button
+     */
+    public boolean getDialog(String q) {
+        String current = null;
+        return false;
+    }
+
+    /**
+>>>>>>> Trivia
      * ends system, done based upon user input or cancel button
      */
     public void end() {
