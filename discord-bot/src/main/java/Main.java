@@ -23,19 +23,11 @@ public class Main extends ListenerAdapter {
 
     }
 
-    public boolean isCommand(String str) {
-        if (str.substring(0, 1).equals("%") && UserInterface.commands.contains(str.substring(1))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
         currentCommand = message;
-        if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
+        if (!message.equals("")&&(!event.getAuthor().isBot()))
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +

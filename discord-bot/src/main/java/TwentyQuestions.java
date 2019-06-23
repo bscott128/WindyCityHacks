@@ -174,7 +174,7 @@ public class TwentyQuestions
      */
     public boolean getDialog(String q) {
         String current = null;
-
+        return false;
     }
 
     /**

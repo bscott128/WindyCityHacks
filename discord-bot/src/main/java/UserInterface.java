@@ -31,10 +31,13 @@ public class UserInterface {
     {
         String message = event.getMessage().getContentRaw();
         String command = message.split(" ")[0];
-        if(!commands.containsKey(command))
-        {
-            message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
-        }
+        try {
+            if (!commands.containsKey(command)) {
+                message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
+            } else if (command.equals("%help")) {
+
+            }
+        } catch
     }
 
     private void message(MessageReceivedEvent event, String message)
