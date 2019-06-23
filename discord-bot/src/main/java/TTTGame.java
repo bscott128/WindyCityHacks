@@ -1,7 +1,7 @@
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class TTTGame {
-    public static int state = 0; //0-asking question, 1-writing question
+    public int state = 0; //0-asking question, 1-writing question
     public static final byte ONE = 0b1;
     public static final byte ZERO = 0b10;
     public static final byte DEFAULT = 0b0;
@@ -102,6 +102,10 @@ public class TTTGame {
 
     public void next(MessageReceivedEvent event) {
         isDone(event);
+        if (event.getMessage().getContentRaw().toLowerCase().equals("%end")) {
+            state = 666;
+            event.getChannel().sendMessage("Tic Tac Toe process ended").queue();
+        }
         if (state != 666 && !event.getAuthor().isBot()) {
 
             String message = event.getMessage().getContentRaw().toLowerCase();
@@ -112,64 +116,63 @@ public class TTTGame {
                 mark = "O";
             }
 
-
-            if (message.equals("a3")) {
+            if (message.equals("%a3")) {
                 if (table[0][0] == " ") {
                     table[0][0] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("b3")) {
+            } else if (message.equals("%b3")) {
                 if (table[0][1] == " ") {
                     table[0][1] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("c3")) {
+            } else if (message.equals("%c3")) {
                 if (table[0][2] == " ") {
                     table[0][2] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("a2")) {
+            } else if (message.equals("%a2")) {
                 if (table[1][0] == " ") {
                     table[1][0] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("b2")) {
+            } else if (message.equals("%b2")) {
                 if (table[1][1] == " ") {
                     table[1][1] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("c2")) {
+            } else if (message.equals("%c2")) {
                 if (table[1][2] == " ") {
                     table[1][2] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("a1")) {
+            } else if (message.equals("%a1")) {
                 if (table[2][0] == " ") {
                     table[2][0] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("b1")) {
+            } else if (message.equals("%b1")) {
                 if (table[2][1] == " ") {
                     table[2][1] = mark;
                     playerTurn = !playerTurn;
                 } else {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
-            } else if (message.equals("c1")) {
+            } else if (message.equals("%c1")) {
                 if (table[2][2] == " ") {
                     table[2][2] = mark;
                     playerTurn = !playerTurn;
@@ -177,7 +180,7 @@ public class TTTGame {
                     event.getChannel().sendMessage("That spot is already taken").queue();
                 }
             } else {
-                if (!message.equals("%ttt"))
+                if (!message.equals("%ttt")&&message.substring(0,1).equals("%"))
                     event.getChannel().sendMessage("That's not a valid coordinate").queue();
             }
             if (message != "%ttt") {
