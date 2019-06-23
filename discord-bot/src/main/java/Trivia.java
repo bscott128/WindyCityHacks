@@ -1,19 +1,22 @@
 import java.util.*;
 import java.io.*;
+
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-public class Trivia{
+
+public class Trivia {
     Set<Integer> s = new HashSet<Integer>();
     LinkedList<TriviaNode> l;
     int state = 0;
     boolean playing = false;
-    public Trivia(MessageReceivedEvent event){
+
+    public Trivia(MessageReceivedEvent event) {
         l = triviaSetup();
         playing = true;
         playGame(event);
     }
 
-    public void playGame(MessageReceivedEvent event){
-        if(state == 0&&true) {
+    public void playGame(MessageReceivedEvent event) {
+        if (state == 0 && true) {
 
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
@@ -23,12 +26,12 @@ public class Trivia{
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
-                String mes = l.get(n).q + /n"A: " + choices[0] + /n"B: " + choices[1] + /n"C: " + choices[2] + /n"D: " + choices[3] + /n"quit";
+                String mes = l.get(n).q + "\n A: " + choices[0] + "\n B: " + choices[1] + "\n C: " + choices[2] + "\n"+
+                "D: " + choices[3] + "\n quit";
                 sendMessage(event, mes);
             }
             state++;
-        }
-        else if(state==1&&true) {
+        } else if (state == 1 && true) {
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
                 n = (int) (Math.random() * 50);
@@ -51,12 +54,13 @@ public class Trivia{
                     sendMessage(event, "The game is finished");
                     playing = false;
                 }
-           // }
-            state = 0;
+                // }
+                state = 0;
+            }
         }
     }
 
-    private String getMessage(MessageReceivedEvent event){
+    private String getMessage(MessageReceivedEvent event) {
         return event.getMessage().getContentRaw().toLowerCase();
     }
 
@@ -64,41 +68,40 @@ public class Trivia{
         event.getChannel().sendMessage(message).queue();
     }
 
-    private LinkedList<TriviaNode> triviaSetup(){
+    private LinkedList<TriviaNode> triviaSetup() {
         LinkedList<TriviaNode> l = new LinkedList<TriviaNode>();
-        try{
+        try {
             FileReader reader = new FileReader(new File("Trivia.txt"));
             Scanner scan = new Scanner(reader);
             l = takeApart(scan);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         System.out.println(l.size());
         return l;
     }
 
-    private LinkedList<TriviaNode> takeApart(Scanner scan){
+    private LinkedList<TriviaNode> takeApart(Scanner scan) {
         LinkedList<TriviaNode> l = new LinkedList<>();
-        while(scan.hasNext()){
+        while (scan.hasNext()) {
             scan.findInLine("\"question\":\"");
             String t = scan.next();
-            if(t.equals("]}"))
+            if (t.equals("]}"))
                 break;
-            while(!t.substring(t.length()-1, t.length()).equals("}")){
+            while (!t.substring(t.length() - 1, t.length()).equals("}")) {
                 t += " " + scan.next();
             }
             System.out.println("checkpoint1");
-            String q = t.substring(0, t.indexOf("correct_answer")-3);
+            String q = t.substring(0, t.indexOf("correct_answer") - 3);
             System.out.println("checkpoint2");
-            String a = t.substring(t.indexOf("correct_answer")+17, t.indexOf("incorrect_answer")-3);
+            String a = t.substring(t.indexOf("correct_answer") + 17, t.indexOf("incorrect_answer") - 3);
             System.out.println("checkpoint3");
 
-            String w = t.substring(t.indexOf("[")+1, t.indexOf("]"));
+            String w = t.substring(t.indexOf("[") + 1, t.indexOf("]"));
             String w1 = w.substring(1, w.indexOf("\"", 1));
-            w = w.substring(w.indexOf(",")+1, w.length());
+            w = w.substring(w.indexOf(",") + 1, w.length());
             String w2 = w.substring(1, w.indexOf("\"", 1));
-            w = w.substring(w.indexOf(",")+1, w.length());
+            w = w.substring(w.indexOf(",") + 1, w.length());
             String w3 = w.substring(1, w.indexOf("\"", 1));
             l.add(new TriviaNode(q, a, w1, w2, w3));
         }
