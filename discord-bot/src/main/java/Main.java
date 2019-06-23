@@ -31,11 +31,22 @@ public class Main extends ListenerAdapter {
         if (message.equals("%play, trivia")) {
             triviaGame = new Trivia(event);
         }
+<<<<<<< HEAD
         if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
             if (message.equals("%play, 20qs")) {
                 tqGame = new TQGame();
                 game = 1;
             }
+=======
+        if(triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
+        {
+            triviaGame.playGame(event);
+        }
+            if (message.equals("%play, 20qs")) {
+            tqGame = new TQGame();
+            game = 1;
+        }
+>>>>>>> cb6885abdab6a3deb206da78343e98c8675b433c
         if (game == 1 && (!event.getAuthor().isBot())) {
             tqGame.next(event);
             if (tqGame.state == 666) {

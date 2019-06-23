@@ -12,7 +12,7 @@ public class Trivia{
         playGame(event);
     }
 
-    private void playGame(MessageReceivedEvent event){
+    public void playGame(MessageReceivedEvent event){
         if(state == 0&&true) {
 
             int n = (int) (Math.random() * 50);
@@ -23,12 +23,8 @@ public class Trivia{
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
-                sendMessage(event, l.get(n).q);
-                sendMessage(event, "A: " + choices[0]);
-                sendMessage(event, "B: " + choices[1]);
-                sendMessage(event, "C: " + choices[2]);
-                sendMessage(event, "D: " + choices[3]);
-                sendMessage(event, "Quit");
+                String mes = l.get(n).q + /n"A: " + choices[0] + /n"B: " + choices[1] + /n"C: " + choices[2] + /n"D: " + choices[3] + /n"quit";
+                sendMessage(event, mes);
             }
             state++;
         }
@@ -39,9 +35,9 @@ public class Trivia{
             }
 
             String str = event.getMessage().getContentRaw().toLowerCase();
-            if (str.substring(0, 7).equals("%trivia")) {
-                str = str.substring(7, str.length());
-                if (!str.equals(" a") || !str.equals(" b") || !str.equals(" c") || !str.equals(" d") || !str.equals(" quit")) {
+            if (str.substring(0, 1).equals("%")) {
+                str = str.substring(1, str.length());
+                if (!str.equals("a") || !str.equals("b") || !str.equals("c") || !str.equals("d") || !str.equals("quit")) {
                     str = getMessage(event);
                 }
                 if (str.equals("quit")) {
@@ -55,7 +51,7 @@ public class Trivia{
                     sendMessage(event, "The game is finished");
                     playing = false;
                 }
-            }
+           // }
             state = 0;
         }
     }
