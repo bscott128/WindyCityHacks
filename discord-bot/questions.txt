@@ -13,6 +13,8 @@ Is it Tetrahydrocannabinol (THC)?
 #Q:Does it treat severe and chronic pain?
 #Q:is it used to treat mild to moderate pain and to relieve cough?
 Is it codeine?
+#Q:can it cause convulsions at high doses?
+Is it thebaine?
 Is it morphine?
 #Q:Does it treat migranes?
 Is it naratriptan?

@@ -34,13 +34,13 @@ public class TwentyQuestions {
         String str = event.getMessage().getContentRaw().toLowerCase();
         if (state == 1) {
             TreeNode notAnswer = new TreeNode(previousCurrent.getValue());
-            previousCurrent.setValue(QUESTION_NOTATION + str);
+            previousCurrent.setValue(QUESTION_NOTATION + str.substring(1));
             previousCurrent.setRight(notAnswer);
             state = 2;
             sendMessage(event, "Now type what it is...Is it ______? (only the answer)");
         } else if (state == 2) {
             sendMessage(event, "The game is finished.");
-            previousCurrent.setLeft(new TreeNode("Is it " + str + "?"));
+            previousCurrent.setLeft(new TreeNode("Is it " + str.substring(1) + "?"));
             save();
             return false;
         } else { // state == 0

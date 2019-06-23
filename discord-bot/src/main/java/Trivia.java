@@ -8,6 +8,7 @@ public class Trivia {
     LinkedList<TriviaNode> l;
     int state = 0;
     boolean playing = false;
+    public int n;
 
     public Trivia(MessageReceivedEvent event) {
         l = triviaSetup();
@@ -18,7 +19,7 @@ public class Trivia {
     public void playGame(MessageReceivedEvent event) {
         if (state == 0 && true) {
 
-            int n = (int) (Math.random() * 50);
+            n = (int) (Math.random() * 50);
             while (s.contains(n)) {
                 n = (int) (Math.random() * 50);
             }
@@ -26,42 +27,40 @@ public class Trivia {
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
-                String mes = l.get(n).q + "\n A: " + choices[0] + "\n B: " + choices[1] + "\n C: " + choices[2] + "\n"+
-                "D: " + choices[3] + "\n quit";
+                String mes = l.get(n).q + "\n A: " + choices[0] + "\n B: " + choices[1] + "\n C: " + choices[2] + "\n" +
+                        "D: " + choices[3] + "\n quit";
                 sendMessage(event, mes);
             }
             state++;
         } else if (state == 1 && true) {
-            int n = (int) (Math.random() * 50);
-            while (s.contains(n)) {
-                n = (int) (Math.random() * 50);
-            }
 
             String str = event.getMessage().getContentRaw().toLowerCase();
             if (str.substring(0, 1).equals("%")) {
-                str = str.substring(1, str.length());
+                str = str.substring(1);
                 if (!str.equals("a") || !str.equals("b") || !str.equals("c") || !str.equals("d") || !str.equals("quit")) {
                     str = getMessage(event);
                 }
                 state++;
             }
-        }
-            else if(state == 2 && playing){
-                if (str.equals("quit")) {
-                    sendMessage(event, "Thanks for playing");
-                    playing = false;
-                } else if (str.equals(l.get(n).a)) {
-                    sendMessage(event, "Correct");
-                } else
-                    sendMessage(event, "Wrong");
-                if (s.size() == 50) {
-                    sendMessage(event, "The game is finished");
-                    playing = false;
-                }
-                // }
-                state = 0;
+        } else if (state == 2 && playing) {
+            String str = event.getMessage().getContentRaw().toLowerCase();
+
+            if (str.equals("quit")) {
+                sendMessage(event, "Thanks for playing");
+                playing = false;
+            } else if (str.equals(l.get(n).a)) {
+                sendMessage(event, "Correct");
+            } else
+                sendMessage(event, "Wrong");
+            if (s.size() == 50) {
+                sendMessage(event, "The game is finished");
+                playing = false;
             }
+            // }
+            state = 0;
         }
+    }
+
 
 
     private String getMessage(MessageReceivedEvent event) {

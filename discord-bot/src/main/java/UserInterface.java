@@ -47,7 +47,7 @@ public class UserInterface {
             return false;
         if(command.length() == 2) {
             char c1 = command.charAt(1);
-            if(c1 == 'y' || c1 == 'n')
+            if(c1 == 'y' || c1 == 'n'||c1=='a'||c1=='b'||c1=='c'||c1=='d')
                 return true;
         }
         if(command.length() == 3) {
