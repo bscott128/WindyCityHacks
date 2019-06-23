@@ -10,9 +10,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main extends ListenerAdapter {
-    public static UserInterface u = new UserInterface();
+    public static UserInterface u;
 
     public static void main(String[] args) throws LoginException {
+        u = new UserInterface();
         JDABuilder builder = new JDABuilder(AccountType.BOT);
         String token = "NTkyMDcxNzQ1MzY4ODgzMjAx.XQ6BEg.4R-ELWcxc6fJfXHMvykbDi7Yjiw";
         builder.setToken(token);
@@ -21,15 +22,29 @@ public class Main extends ListenerAdapter {
 
     }
 
+    public boolean isCommand(String str) {
+        if (str.substring(0,1).equals("%")&&UserInterface.commands.contains(str.substring(1))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+<<<<<<< HEAD
         String messag = event.getMessage().getContentRaw();
         if (!messag.equals("")&&(!event.getAuthor().isBot()))
+=======
+        String message = event.getMessage().getContentRaw().toLowerCase();
+        if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
+>>>>>>> 567ccd6db04dfce49180baf9f91436e480c0593f
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
-        if (event.getMessage().getContentRaw().equals("high")) {
+        if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
@@ -40,13 +55,13 @@ public class Main extends ListenerAdapter {
                     images.add(mess);
                 }
             }
-            for (Message.Attachment message : images) {
-                String fileName = message.getFileName();
+            for (Message.Attachment messageImage : images) {
+                String fileName = messageImage.getFileName();
                 int period = fileName.indexOf(".");
                 String fileType = fileName.substring(period);
-                int hash = message.hashCode();
+                int hash = messageImage.hashCode();
                 File tempFile = new File("./images/" + hash + fileType);
-                message.download(tempFile);
+                messageImage.download(tempFile);
                 event.getChannel().sendMessage("Image downloaded as " + hash + fileType).queue();
             }
             event.getChannel().sendMessage("" + images.size() + " images downloaded").queue();

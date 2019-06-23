@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.*;
 
 public class UserInterface{
+<<<<<<< HEAD
     public static Set<String> commands = new Set();
 
     {
@@ -22,9 +23,13 @@ public class UserInterface{
 
     }
 
+=======
+    public static Set<String> commands = new HashSet<String>();
+    public static String[] validCommands = {"dank"};
+>>>>>>> 567ccd6db04dfce49180baf9f91436e480c0593f
     public void processCommand(MessageReceivedEvent event)
     {
-
+        commands.addAll(validCommands);
     }
 
 
@@ -42,6 +47,7 @@ public class UserInterface{
         this.event = event;
         command = event.getMessage().getContentRaw();
         user = event.getAuthor();
+
         processCommand(command);
     }
 
