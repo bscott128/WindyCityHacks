@@ -16,25 +16,19 @@ public class UserInterface {
 
     public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
 
-    public static Set<String> commands = new Set();
+    public static String[] validCommands = {"dank"};
 
-    public static Set<String> commands = new HashSet<String>();
+    public void processCommand(MessageReceivedEvent event) {
+        commands.addAll(Arrays.asList(validCommands));
 
-        public static Set<String> commands = new HashSet<String>(); // gotta have that O(1)
+        String command = event.getMessage().getContentRaw();
+        if (!commands.contains(command)) {
 
-        public static String[] validCommands = {"dank"};
-
-        public void processCommand(MessageReceivedEvent event) {
-            commands.addAll(Arrays.asList(validCommands));
-
-            String command = event.getMessage().getContentRaw();
-            if (!commands.contains(command)) {
-
-            }
         }
-
-
     }
+
+
+}
 
 /*public class UserInterface{
     Set<String> commands = new HashSet<String>();
