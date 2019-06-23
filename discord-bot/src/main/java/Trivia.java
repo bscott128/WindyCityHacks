@@ -3,6 +3,7 @@ import java.io.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Trivia{
     LinkedList<TriviaNode> l;
+    int state = 0;
     public Trivia(MessageReceivedEvent event){
         l = triviaSetup();
         System.out.println(l.size());
@@ -10,44 +11,46 @@ public class Trivia{
     }
 
     private void playGame(MessageReceivedEvent event){
-        boolean playing = true;
-        Set<Integer> s = new HashSet<Integer>();
-        while(playing){
-            int n = (int)(Math.random()*50);
-            while(s.contains(n)) {
-                n = (int)(Math.random() * 50);
+        if(state == 0) {
+            boolean playing = true;
+            Set<Integer> s = new HashSet<Integer>();
+            int n = (int) (Math.random() * 50);
+            while (s.contains(n)) {
+                n = (int) (Math.random() * 50);
             }
             s.add(n);
             {
                 TriviaNode node = l.get(n);
                 String[] choices = node.choices();
                 sendMessage(event, l.get(n).q);
-                sendMessage(event, "A: "+choices[0]);
-                sendMessage(event, "B: "+choices[1]);
-                sendMessage(event, "C: "+choices[2]);
-                sendMessage(event, "D: "+choices[3]);
+                sendMessage(event, "A: " + choices[0]);
+                sendMessage(event, "B: " + choices[1]);
+                sendMessage(event, "C: " + choices[2]);
+                sendMessage(event, "D: " + choices[3]);
                 sendMessage(event, "Quit");
             }
+            state++;
+        }
+        if(state==1) {
             String str = event.getMessage().getContentRaw().toLowerCase();
-            if(str.substring(0,7).equals("%trivia")){
+            if (str.substring(0, 7).equals("%trivia")) {
                 str = str.substring(7, str.length());
-                if(!str.equals(" a")||!str.equals(" b")||!str.equals(" c")||!str.equals(" d")||!str.equals(" quit")){
+                if (!str.equals(" a") || !str.equals(" b") || !str.equals(" c") || !str.equals(" d") || !str.equals(" quit")) {
                     str = getMessage(event);
                 }
-                if(str.equals("quit")){
+                if (str.equals("quit")) {
                     sendMessage(event, "Thanks for playing");
                     playing = false;
-                }
-                else if(str.equals(l.get(n).a)){
+                } else if (str.equals(l.get(n).a)) {
                     sendMessage(event, "Correct");
-                }
-                else
+                } else
                     sendMessage(event, "Wrong");
                 if (s.size() == 50) {
                     sendMessage(event, "The game is finished");
                     playing = false;
                 }
             }
+            state = 0;
         }
     }
 
