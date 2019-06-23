@@ -11,7 +11,7 @@ public class Trivia{
 
     private void playGame(MessageReceivedEvent event){
         boolean playing = true;
-        Set<int> s = new HashSet<int>();
+        Set<Integer> s = new HashSet<Integer>();
         while(playing){
             int n = (int)(Math.random()*50);
             while(s.contains(n)) {
@@ -19,24 +19,24 @@ public class Trivia{
             }
             {
                 String[] choices = l.get(n).choices();
-                sendMessage(event, l.get(i).q);
-                sendMessage(event, "A: "+l.choics[0]);
-                sendMessage(event, "B: "+l.choics[1]);
-                sendMessage(event, "C: "+l.choics[2]);
-                sendMessage(event, "D: "+l.choics[3]);
+                sendMessage(event, l.get(n).q);
+                sendMessage(event, "A: "+choices[0]);
+                sendMessage(event, "B: "+choices[1]);
+                sendMessage(event, "C: "+choices[2]);
+                sendMessage(event, "D: "+choices[3]);
                 sendMessage(event, "Quit");
             }
             String str = event.getMessage().getContentRaw().toLowerCase();
             {
                 if(!str.equals("a")||!str.equals("b")||!str.equals("c")||!str.equals("d")||!str.equals("quit")){
-                    str = getMessage();
+                    str = getMessage(event);
                 }
-                if(str.equals(quit)){
+                if(str.equals("quit")){
                     sendMessage(event, "Thanks for playing");
                     playing = false;
                 }
                 else if(str.equals(l.get(n).a)){
-                    sendMessage(event, "Correct"):
+                    sendMessage(event, "Correct");
                 }
                 else
                     sendMessage(event, "Wrong");
