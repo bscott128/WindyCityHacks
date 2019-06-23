@@ -27,12 +27,17 @@ public class Main extends ListenerAdapter {
         builder.build();
     }
 
-    private void stepGames(MessageReceivedEvent event, String message)
-    {
-        if(message.equals("%play, trivia"))
-        {
+    private void stepGames(MessageReceivedEvent event, String message) {
+        if (message.equals("%play, trivia")) {
             triviaGame = new Trivia(event);
         }
+<<<<<<< HEAD
+        if (triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
+            if (message.equals("%play, 20qs")) {
+                tqGame = new TQGame();
+                game = 1;
+            }
+=======
         if(triviaGame != null && triviaGame.playing && (!event.getAuthor().isBot()))
         {
             triviaGame.playGame(event);
@@ -41,6 +46,7 @@ public class Main extends ListenerAdapter {
             tqGame = new TQGame();
             game = 1;
         }
+>>>>>>> cb6885abdab6a3deb206da78343e98c8675b433c
         if (game == 1 && (!event.getAuthor().isBot())) {
             tqGame.next(event);
             if (tqGame.state == 666) {
@@ -59,11 +65,19 @@ public class Main extends ListenerAdapter {
         }
     }
 
+    private boolean isCommandAttempt(MessageReceivedEvent event) {
+        String message = event.getMessage().getContentRaw().toLowerCase();
+        if (message.substring(0, 1).equals("%")) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
         currentCommand = message;
-        if (!message.equals("")&&(!event.getAuthor().isBot()))
+        if (!message.equals("") && (!event.getAuthor().isBot()))
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
@@ -71,7 +85,9 @@ public class Main extends ListenerAdapter {
         if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
-        stepGames(event, message);
+        if (isCommandAttempt(event)) {
+            stepGames(event, message);
+        }
 
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
         if (attatchments.size() > 0) {
