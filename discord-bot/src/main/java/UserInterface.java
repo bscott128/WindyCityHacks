@@ -14,6 +14,11 @@ import java.io.*;
 
 public class UserInterface {
 
+    Trivia triv;
+    TTTGame tictac;
+    TQGame twenty;
+    boolean playingTrivia, playingTicTac, playingTwenty;
+
     private String motd;
     private LinkedList<String> rules;
 
@@ -39,80 +44,80 @@ public class UserInterface {
 
     public void processCommand(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
-        if (!commands.containsKey(event)) {
 
-            String[] arguments = message.split(", ");
-            String command = arguments[0];
-            try {
-                if (message.charAt(0) != '%')
-                    return;
-                else if (!commands.containsKey(command)) {
-                    message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
-                } else if (command.equals("%play")) {
-                    if (arguments[1].equals("tictactoe")) {
+        String[] arguments = message.split(", ");
+        String command = arguments[0];
+        try {
+            if (message.charAt(0) != '%')
+                return;
+            else if (!commands.containsKey(command)) {
+                message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
+            } else if (command.equals("%play")) {
+                if (arguments[1].equals("tictactoe")) {
 
-                    } else if (arguments[1].equals("20qs")) {
+                } else if (arguments[1].equals("20qs")) {
 
-                    } else if (arguments[1].equals("trivia")) {
+                } else if (arguments[1].equals("trivia")) {
 
-                    }
-
-                } else if (command.equals("%motd")) {
-                    if (arguments.length == 1) {
-                        message(event, motd);
-                    } else {
-                        motd = arguments[1];
-                    }
-                } else if (command.equals("%rules")) {
-                    if (arguments.length == 1) {
-                        for (int i = 0; i < rules.size(); i++)
-                            message(event, (1 + i) + ". " + rules.get(i));
-                    } else if (arguments[1].equals("add")) {
-                        rules.add(arguments[2]);
-                    } else if (arguments[1].equals("remove")) {
-                        rules.remove(Integer.parseInt(arguments[2]) - 1);
-                    }
-                } else if (command.equals("%randomfact")) {
-
-                } else if (command.equals("%about")) {
-                    message(event, "V1.0 This bot was created in under 24 hours for Windy City Hacks 2019.");
-                } else if (command.equals("%help")) {
-                    if (arguments.length == 1) {
-                        Iterator<Command> iter = commands.values().iterator();
-                        String msg = "";
-                        while (iter.hasNext()) {
-                            Command c = iter.next();
-                            msg += "**" + c.name + "**" + " - " + c.description + "\n";
-                        }
-                        message(event, msg);
-                    } else {
-                        if (!commands.containsKey("%" + arguments[1]))
-                            message(event, "Please enter a valid command for which you want help.");
-                        else
-                            message(event, commands.get("%" + arguments[1]).description);
-                    }
-                } else if (command.equals("%contact")) {
-                    message(event, "Contact the developers @Scott#7134, will.schlach#8897, boozy#7833");
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
-                message(event, "You did not provide sufficient arguments for that command, or you did not properly format your arguments. Try using \"help\" to see how it is properly used");
 
+            } else if (command.equals("%motd")) {
+                if (arguments.length == 1) {
+                    message(event, motd);
+                } else {
+                    motd = arguments[1];
+                }
+            } else if (command.equals("%rules")) {
+                if (arguments.length == 1) {
+                    for (int i = 0; i < rules.size(); i++)
+                        message(event, (1 + i) + ". " + rules.get(i));
+                } else if (arguments[1].equals("add")) {
+                    rules.add(arguments[2]);
+                } else if (arguments[1].equals("remove")) {
+                    rules.remove(Integer.parseInt(arguments[2]) - 1);
+                }
+            } else if (command.equals("%randomfact")) {
+
+            } else if (command.equals("%about")) {
+                message(event, "V1.0 This bot was created in under 24 hours for Windy City Hacks 2019.");
+            } else if (command.equals("%help")) {
+                if (arguments.length == 1) {
+                    Iterator<Command> iter = commands.values().iterator();
+                    String msg = "";
+                    while (iter.hasNext()) {
+                        Command c = iter.next();
+                        msg += "**" + c.name + "**" + " - " + c.description + "\n";
+                    }
+                    message(event, msg);
+                } else {
+                    if (!commands.containsKey("%" + arguments[1]))
+                        message(event, "Please enter a valid command for which you want help.");
+                    else
+                        message(event, commands.get("%" + arguments[1]).description);
+                }
+            } else if (command.equals("%contact")) {
+                message(event, "Contact the developers @Scott#7134, will.schlach#8897, boozy#7833");
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            message(event, "You did not provide sufficient arguments for that command, or you did not properly format your arguments. Try using \"help\" to see how it is properly used");
+
         }
+
     }
-    private void message(MessageReceivedEvent event, String message)
-    {
+
+    private void message(MessageReceivedEvent event, String message) {
         event.getChannel().sendMessage(message).queue();
     }
 }
-    class Command {
-        String name, description;
 
-        public Command(String n, String d) {
-            name = n;
-            description = d;
-        }
+class Command {
+    String name, description;
+
+    public Command(String n, String d) {
+        name = n;
+        description = d;
     }
+}
 
 /*public class UserInterface{
     Set<String> commands = new HashSet<String>();

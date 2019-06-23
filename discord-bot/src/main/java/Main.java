@@ -10,8 +10,9 @@ import java.util.*;
 import java.io.*;
 
 public class Main extends ListenerAdapter {
-    private static TQGame tqGame = new TQGame();
-    private static TTTGame tttGame;
+    private TQGame tqGame = new TQGame();
+    private TTTGame tttGame;
+    private Trivia triviaGame;
     public static UserInterface u;
     public static String currentCommand;
     public static int game = 0;
@@ -26,6 +27,35 @@ public class Main extends ListenerAdapter {
         builder.build();
     }
 
+    private void stepGames(MessageReceivedEvent event, String message)
+    {
+        if(message.equals("%play, trivia"))
+        {
+            triviaGame = new Trivia(event);
+        }
+        if(triviaGame.playing && (!event.getAuthor().isBot()))
+        if (message.equals("%play, 20qs")) {
+            tqGame = new TQGame();
+            game = 1;
+        }
+        if (game == 1 && (!event.getAuthor().isBot())) {
+            tqGame.next(event);
+            if (tqGame.state == 666) {
+                game = 0;
+            }
+        }
+        if (message.equals("%play, tictactoe")) {
+            tttGame = new TTTGame(event);
+            game = 2;
+        }
+        if (game == 2 && (!event.getAuthor().isBot())) {
+            tttGame.next(event);
+            if (tttGame.state == 666) {
+                game = 0;
+            }
+        }
+    }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw().toLowerCase();
@@ -38,26 +68,7 @@ public class Main extends ListenerAdapter {
         if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
-        if (message.equals("%tq")) {
-            tqGame = new TQGame();
-            game = 1;
-        }
-        if (game == 1 && (!event.getAuthor().isBot())) {
-            tqGame.next(event);
-            if (tqGame.state == 666) {
-                game = 0;
-            }
-        }
-        if (message.equals("%ttt")) {
-            tttGame = new TTTGame(event);
-            game = 2;
-        }
-        if (game == 2 && (!event.getAuthor().isBot())) {
-            tttGame.next(event);
-            if (tttGame.state == 666) {
-                game = 0;
-            }
-        }
+        stepGames(event, message);
 
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
         if (attatchments.size() > 0) {

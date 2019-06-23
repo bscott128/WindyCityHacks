@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Trivia{
+    Set<Integer> s = new HashSet<Integer>();
     LinkedList<TriviaNode> l;
     int state = 0;
     boolean playing = false;
@@ -13,7 +14,7 @@ public class Trivia{
 
     private void playGame(MessageReceivedEvent event){
         if(state == 0&&true) {
-            Set<Integer> s = new HashSet<Integer>();
+
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
                 n = (int) (Math.random() * 50);
@@ -32,6 +33,11 @@ public class Trivia{
             state++;
         }
         else if(state==1&&true) {
+            int n = (int) (Math.random() * 50);
+            while (s.contains(n)) {
+                n = (int) (Math.random() * 50);
+            }
+
             String str = event.getMessage().getContentRaw().toLowerCase();
             if (str.substring(0, 7).equals("%trivia")) {
                 str = str.substring(7, str.length());
