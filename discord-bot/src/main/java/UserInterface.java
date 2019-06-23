@@ -11,7 +11,16 @@ import java.util.*;
 import java.util.*;
 
 public class UserInterface{
-    Set<String> commands = new HashSet<String>();
+    public static Set<String> commands = new Set();
+
+    {
+
+    }
+
+    public UserInterface()
+    {
+
+    }
 
     public void processCommand(MessageReceivedEvent event)
     {

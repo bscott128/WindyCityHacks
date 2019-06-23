@@ -25,7 +25,7 @@ public class Main extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         String messag = event.getMessage().getContentRaw();
         if (!messag.equals("")&&(!event.getAuthor().isBot()))
-            u.main(event);
+            u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
