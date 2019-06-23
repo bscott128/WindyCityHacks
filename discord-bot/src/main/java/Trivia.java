@@ -4,14 +4,15 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Trivia{
     LinkedList<TriviaNode> l;
     int state = 0;
+    boolean playing = false;
     public Trivia(MessageReceivedEvent event){
         l = triviaSetup();
-        System.out.println(l.size());
+        playing = true;
         playGame(event);
     }
 
     private void playGame(MessageReceivedEvent event){
-        if(state == 0) {
+        if(state == 0&&true) {
             Set<Integer> s = new HashSet<Integer>();
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
@@ -30,7 +31,7 @@ public class Trivia{
             }
             state++;
         }
-        else if(state==1) {
+        else if(state==1&&true) {
             String str = event.getMessage().getContentRaw().toLowerCase();
             if (str.substring(0, 7).equals("%trivia")) {
                 str = str.substring(7, str.length());
