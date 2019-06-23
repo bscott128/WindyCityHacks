@@ -29,7 +29,8 @@ public class Trivia{
                 sendMessage(event, "Quit");
             }
             String str = event.getMessage().getContentRaw().toLowerCase();
-            {
+            if(str.substring(0,7).equals("%trivia")){
+                
                 if(!str.equals("a")||!str.equals("b")||!str.equals("c")||!str.equals("d")||!str.equals("quit")){
                     str = getMessage(event);
                 }
@@ -82,7 +83,10 @@ public class Trivia{
             while(!t.substring(t.length()-1, t.length()).equals("}")){
                 t += " " + scan.next();
             }
+<<<<<<< HEAD
             System.out.println("checkpoint1");
+=======
+>>>>>>> c2ed7b49abe26e327faa2703c164c8324a0bf95f
             String q = t.substring(0, t.indexOf("correct_answer")-3);
             System.out.println("checkpoint2");
             String a = t.substring(t.indexOf("correct_answer")+17, t.indexOf("incorrect_answer")-3);
@@ -95,7 +99,6 @@ public class Trivia{
             w = w.substring(w.indexOf(",")+1, w.length());
             String w3 = w.substring(1, w.indexOf("\"", 1));
             l.add(new TriviaNode(q, a, w1, w2, w3));
-            //System.out.println(q + a + w1 + w2 + w3);
         }
         System.out.println(l.size());
         return l;
