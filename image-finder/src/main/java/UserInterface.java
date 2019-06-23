@@ -24,7 +24,7 @@ public class UserInterface{
     }
 
     private void processCommand(String command){
-        if(command!=null&&command.substring(0, 1).equals("%")){//moves to using the commands
+        if((command!=null||!command.equals(""))&&command.substring(0, 1).equals("%")){//moves to using the commands
             command = command.substring(1);
             commanding = true;
             if(!commands.contains(command)||command.equals("help")){//tried a command that doesn't exist
@@ -46,7 +46,7 @@ public class UserInterface{
 
     private void help(){
         if(commanding){
-            event.getChannel().sendMessage("% + tag -- displays all images with tagged object");
+            event.getChannel().sendMessage("% + tag -- displays all images with tagged object").queue();
         }
     }
 
