@@ -9,4 +9,23 @@ public class TriviaNode {
         this.w3 = w3;
     }
 
+    public String[] choices(){
+        String[] stuff = new String[4];
+        int i = (int)(Math.random()*4);
+        stuff[i] = a;
+        i++;
+        if(i==4)
+            i = 0;
+        stuff[i] = w1;
+        i++;
+        if(i==4)
+            i = 0;
+        stuff[i] = w2;
+        i++;
+        if(i==4)
+            i = 0;
+        stuff[i] = w3;
+        return stuff;
+    }
+
 }

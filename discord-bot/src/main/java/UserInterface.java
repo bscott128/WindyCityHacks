@@ -41,7 +41,16 @@ public class UserInterface {
     public void processCommand(MessageReceivedEvent event)
     {
         String message = event.getMessage().getContentRaw();
+<<<<<<< HEAD
+<<<<<<< HEAD
+        if(!commands.containsKey(event))
+        {
+
+=======
+        String[] arguments = message.split(" ");
+=======
         String[] arguments = message.split(", ");
+>>>>>>> master
         String command = arguments[0];
         try {
             if(message.charAt(0) != '%')
@@ -109,7 +118,12 @@ public class UserInterface {
                 message(event, "Contact the developers @Scott#7134, will.schlach#8897, boozy#7833");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
+<<<<<<< HEAD
+            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used");
+>>>>>>> Trivia
+=======
             message(event, "You did not provide sufficient arguments for that command, or you did not properly format your arguments. Try using \"help\" to see how it is properly used");
+>>>>>>> master
         }
     }
 
