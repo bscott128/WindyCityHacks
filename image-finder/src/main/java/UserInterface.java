@@ -51,7 +51,6 @@ public class UserInterface{
     }
 
     private void image() {
-
     }
 
 }
