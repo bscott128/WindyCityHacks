@@ -42,16 +42,16 @@ public class UserInterface {
             commands.put("%" + c.name, c);
     }
 
-    private boolean isValidCommand(String command)
-    {
-        if(command.length() < 3)
-                return false;
+    private boolean isValidCommand(String command) {
+        if (command.length() < 3)
+            return false;
         char c1 = command.charAt(1);
         char c2 = command.charAt(2);
-        if((c1 == 'a' || c1 == 'b' || c1 == 'c') && (c2 == '1' || c2 == '2' || c2 == '3'))
+        if ((c1 == 'a' || c1 == 'b' || c1 == 'c') && (c2 == '1' || c2 == '2' || c2 == '3'))
             return true;
-        if(!commands.containsKey(command))
+        if (!commands.containsKey(command))
             return false;
+        return true;
     }
 
     public void processCommand(MessageReceivedEvent event) {
@@ -62,7 +62,7 @@ public class UserInterface {
         try {
             if (message.charAt(0) != '%')
                 return;
-            else if () {
+            else if (isValidCommand(command)) {
                 message(event, "That is not a valid command. To see a list of commands, type \"%help\"\nFor information on a command, type \"%help\" followed by the name of the command you wish to know more about");
             } else if (command.equals("%play")) {
                 if (arguments[1].equals("tictactoe")) {
