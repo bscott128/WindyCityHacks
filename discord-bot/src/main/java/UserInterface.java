@@ -8,7 +8,20 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 //import javax.security.auth.login.LoginException;
 import java.util.*;
 
+import java.util.*;
+
 public class UserInterface{
+    Set<String> commands = new HashSet<String>();
+
+    public void processCommand(MessageReceivedEvent event)
+    {
+
+    }
+
+
+}
+
+/*public class UserInterface{
     Set<String> commands = new HashSet<String>();
     MessageReceivedEvent event;
     String command;
@@ -55,5 +68,5 @@ public class UserInterface{
     private void image() {
     }
 
-}
+}*/
 
