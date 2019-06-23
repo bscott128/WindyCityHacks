@@ -33,13 +33,8 @@ public class Main extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-<<<<<<< HEAD
-        String messag = event.getMessage().getContentRaw();
-        if (!messag.equals("")&&(!event.getAuthor().isBot()))
-=======
         String message = event.getMessage().getContentRaw().toLowerCase();
         if (!message.equals("")&&(!event.getAuthor().isBot())&&isCommand(message))
->>>>>>> 567ccd6db04dfce49180baf9f91436e480c0593f
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
