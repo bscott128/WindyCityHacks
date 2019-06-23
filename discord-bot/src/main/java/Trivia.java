@@ -12,7 +12,6 @@ public class Trivia{
 
     private void playGame(MessageReceivedEvent event){
         if(state == 0) {
-            boolean playing = true;
             Set<Integer> s = new HashSet<Integer>();
             int n = (int) (Math.random() * 50);
             while (s.contains(n)) {
@@ -31,7 +30,7 @@ public class Trivia{
             }
             state++;
         }
-        if(state==1) {
+        else if(state==1) {
             String str = event.getMessage().getContentRaw().toLowerCase();
             if (str.substring(0, 7).equals("%trivia")) {
                 str = str.substring(7, str.length());
