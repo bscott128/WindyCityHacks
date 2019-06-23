@@ -11,6 +11,7 @@ import java.io.*;
 
 public class Main extends ListenerAdapter {
     private static TQGame tqGame = new TQGame();
+    private static TTTGame tttGame = new TTTGame();
     public static UserInterface u;
     public static String currentCommand;
     public static int game = 0;
@@ -56,11 +57,11 @@ public class Main extends ListenerAdapter {
             }
         }
         if (message.equals("%ttt")) {
-            tqGame = new TQGame();
+            tttGame = new TTTGame();
             game = 2;
         }
         if (game == 2 && (!event.getAuthor().isBot())) {
-            tqGame.next(event);
+            tttGame.next(event);
             if (tqGame.state == 666) {
                 game = 0;
             }
