@@ -14,11 +14,8 @@ public class Main extends ListenerAdapter {
     private static TTTGame tttGame;
     public static UserInterface u;
     public static String currentCommand;
-<<<<<<< HEAD
     public static int game = 0;
-=======
     private Trivia t;
->>>>>>> Trivia
 
     public static void main(String[] args) throws LoginException {
         u = new UserInterface();
@@ -27,36 +24,17 @@ public class Main extends ListenerAdapter {
         builder.setToken(token);
         builder.addEventListener(new Main());
         builder.build();
-
-
-<<<<<<< HEAD
-    public boolean isCommand(String str) {
-        if (str.substring(0, 1).equals("%") && UserInterface.commands.containsKey(str.substring(1))) {
-            return true;
-        } else {
-            return false;
-        }
-=======
->>>>>>> Trivia
     }
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        if(event.getMessage().getContentRaw().toLowerCase().equals("%trivia"))
-            t = new Trivia(event);
-        t.playGame(event);
         String message = event.getMessage().getContentRaw().toLowerCase();
         currentCommand = message;
-<<<<<<< HEAD
-        if (!message.equals("") && (!event.getAuthor().isBot()) && isCommand(message))
-=======
         if (!message.equals("")&&(!event.getAuthor().isBot()))
->>>>>>> Trivia
             u.processCommand(event);
         System.out.println("We received a message from " +
                 event.getAuthor().getName() + ": " +
                 event.getMessage().getContentDisplay());
-<<<<<<< HEAD
         if (message.equals("high")) {
             event.getChannel().sendMessage("IQ").queue();
         }
@@ -80,8 +58,7 @@ public class Main extends ListenerAdapter {
                 game = 0;
             }
         }
-=======
->>>>>>> Trivia
+
         List<Message.Attachment> attatchments = event.getMessage().getAttachments();
         if (attatchments.size() > 0) {
             List<Message.Attachment> images = new LinkedList();
