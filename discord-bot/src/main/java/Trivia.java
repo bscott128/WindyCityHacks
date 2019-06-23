@@ -86,10 +86,7 @@ public class Trivia{
             while(!t.substring(t.length()-1, t.length()).equals("}")){
                 t += " " + scan.next();
             }
-<<<<<<< HEAD
             System.out.println("checkpoint1");
-=======
->>>>>>> c2ed7b49abe26e327faa2703c164c8324a0bf95f
             String q = t.substring(0, t.indexOf("correct_answer")-3);
             System.out.println("checkpoint2");
             String a = t.substring(t.indexOf("correct_answer")+17, t.indexOf("incorrect_answer")-3);
