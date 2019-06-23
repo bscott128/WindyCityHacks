@@ -18,7 +18,8 @@ public class Trivia{
                 n = (int)(Math.random() * 50);
             }
             {
-                String[] choices = l.get(n).choices();
+                TriviaNode node = l.get(n);
+                String[] choices = node.choices();
                 sendMessage(event, l.get(n).q);
                 sendMessage(event, "A: "+choices[0]);
                 sendMessage(event, "B: "+choices[1]);
