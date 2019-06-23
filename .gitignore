@@ -21,3 +21,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+discord-bot/.gradle/buildOutputCleanup/outputFiles.bin
+discord-bot/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+discord-bot/.gradle/4.10.3/taskHistory/taskHistory.lock
+discord-bot/.gradle/4.10.3/taskHistory/taskHistory.bin
+discord-bot/.gradle/4.10.3/javaCompile/javaCompile.lock
+discord-bot/.gradle/4.10.3/fileHashes/fileHashes.lock
+discord-bot/.gradle/4.10.3/fileHashes/fileHashes.bin
+discord-bot/.gradle/4.10.3/fileContent/fileContent.lock
