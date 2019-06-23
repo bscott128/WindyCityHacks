@@ -14,23 +14,26 @@ import java.io.*;
 
 public class UserInterface {
 
-    private String motd, rules;
+    private String motd;
+    private LinkedList<String> rules;
 
     public static Map<String, Command> commands = new HashMap(); // gotta have that O(1)
 
     public static Command[] validCommands =
             {
-                    new Command("play",         "Plays one of three games.\n\tUSAGE:\n\t\t%play <tictactoe/20qs/trivia>\n\t"),
-                    new Command("motd",         "Displays the message of the day.\n\tUSAGE:\n\t\t%motd\n\t\t%motd <MESSAGE>\n\t"),
-                    new Command("rules",        "Allows for the display and editing of rules.\n\tUSAGE:\n\t\t%rules\n\t\t%rules <add/remove> <RULE>\n\t"),
+                    new Command("play",         "Plays one of three games.\n\tUSAGE:\n\t\t%play, <tictactoe/20qs/trivia>\n\t"),
+                    new Command("motd",         "Displays the message of the day.\n\tUSAGE:\n\t\t%motd\n\t\t%motd, <MESSAGE>\n\t"),
+                    new Command("rules",        "Allows for the display and editing of rules.\n\tUSAGE:\n\t\t%rules\n\t\t%rules, <add>, <RULE>\n\t\t%rules, <add>, <RULENUMBER>\n\t"),
                     new Command("randomfact",   "Displays a random fact.\n\tUSAGE:\n\t\t%randomfact\n\t"),
                     new Command("about",        "Displays information about this bot.\n\tUSAGE:\n\t\t%about\n\t"),
-                    new Command("help",         "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help <command>\n\t"),
+                    new Command("help",         "Displays information about commands.\n\tUSAGE:\n\t\t%help\n\t\t%help, <command>\n\t"),
                     new Command("contact",      "Displays contact info of the developers.\n\tUSAGE:\n\t\t%contact\n\t"),
             };
 
     public UserInterface()
     {
+        motd = "";
+        rules = new LinkedList();
         for(Command c : validCommands)
             commands.put("%"+c.name,c);
     }
@@ -38,7 +41,7 @@ public class UserInterface {
     public void processCommand(MessageReceivedEvent event)
     {
         String message = event.getMessage().getContentRaw();
-        String[] arguments = message.split(" ");
+        String[] arguments = message.split(", ");
         String command = arguments[0];
         try {
             if(message.charAt(0) != '%')
@@ -49,17 +52,28 @@ public class UserInterface {
             {
                 if(arguments.length == 1)
                 {
-                    message(event,"");
+                    message(event,motd);
                 }else
                 {
-
+                    motd = arguments[1];
                 }
             }else if(command.equals("%rules")) {
+                if(arguments.length == 1) {
+                    for(int i = 0; i < rules.size(); i++)
+                        message(event, (1+i) + ". " +rules.get(i));
+                }else if (arguments[1].equals("add")) {
+                    rules.add(arguments[2]);
+                }else if(arguments[1].equals("remove")) {
+                    rules.remove(Integer.parseInt(arguments[2])-1);
+                }
             }
             else if(command.equals("%randomfact")) {
+
             }
-            else if(true) {
+            else if(command.equals("%about")) {
+                message(event, "V1.0 This bot was created in under 24 hours for Windy City Hacks 2019.");
             }
+
             else if (command.equals("%help")) {
                 if(arguments.length == 1)
                 {
@@ -80,10 +94,10 @@ public class UserInterface {
                 }
             }else if (command.equals("%contact"))
             {
-
+                message(event, "Contact the developers @Scott#7134, will.schlach#8897, boozy#7833");
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            message(event, "You did not provide sufficient arguments for that command. Try using \"help\" to see how it is properly used");
+            message(event, "You did not provide sufficient arguments for that command, or you did not properly format your arguments. Try using \"help\" to see how it is properly used");
         }
     }
 
